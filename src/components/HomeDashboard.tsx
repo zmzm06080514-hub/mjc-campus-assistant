@@ -35,6 +35,7 @@ interface HomeDashboardProps {
   posts: CommunityPost[];
   foodSpots: FoodSpot[];
   onNavigate: (tab: any) => void;
+  onCreatePost: () => void;
   onShowToast: (msg: string) => void;
 }
 
@@ -47,6 +48,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   posts,
   foodSpots,
   onNavigate,
+  onCreatePost,
   onShowToast,
 }) => {
   const [activeFeedFilter, setActiveFeedFilter] = useState<'meal' | 'class' | 'notice' | 'event'>('meal');
@@ -108,7 +110,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
         <div className="relative z-10 flex items-center gap-2 shrink-0">
           <button
-            onClick={() => onNavigate('community')}
+            onClick={onCreatePost}
             className="px-4 py-2 bg-white text-[#0A174C] font-extrabold text-xs rounded-xl shadow-xs hover:bg-sky-50 transition-all"
           >
             + 새 글 작성
