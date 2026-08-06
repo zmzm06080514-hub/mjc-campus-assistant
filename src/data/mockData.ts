@@ -43,8 +43,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '엄마손떡볶이',
     category: '분식',
     address: '서울 서대문구 증가로10길 16-20',
-    lat: 38,
-    lng: 42,
     rating: 4.8,
     phone: '02-304-0089',
     images: [
@@ -66,8 +64,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '거북골 돈까스&우동',
     category: '양식/일식',
     address: '서울 서대문구 거북골로 33-1 1층',
-    lat: 55,
-    lng: 60,
     rating: 4.7,
     phone: '02-372-9921',
     images: [
@@ -87,8 +83,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '명지 브라운 로스터리',
     category: '카페/디저트',
     address: '서울 서대문구 거북골로 21-4 2층',
-    lat: 25,
-    lng: 70,
     rating: 4.9,
     phone: '02-302-1209',
     images: [

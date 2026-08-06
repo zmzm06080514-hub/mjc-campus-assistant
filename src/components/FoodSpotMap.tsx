@@ -1,6 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FoodSpot, CampusType } from '../types';
 import { MapPin, Star, Copy, Plus, Phone, Search, Utensils, Sparkles, Image as ImageIcon, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
+// 명지전문대 서울캠퍼스(서대문구) 대략 중심 좌표 — 지도 초기 중심값이자, 주소 지오코딩이
+// 실패했을 때(예: 상세 지번이 카카오 DB에 없는 경우) 폴백으로 사용한다.
+const CAMPUS_CENTER = { lat: 37.5895, lng: 126.9385 };
 
 interface FoodSpotMapProps {
   campus: CampusType;
@@ -31,6 +41,13 @@ export const FoodSpotMap: React.FC<FoodSpotMapProps> = ({
   const [newSpotImage2, setNewSpotImage2] = useState<string>('');
   const [newSpotImage3, setNewSpotImage3] = useState<string>('');
 
+  // 카카오맵 관련 ref/상태 — 지도 인스턴스와 현재 찍힌 마커들은 렌더링 트리거가
+  // 필요 없으므로 state가 아니라 ref로 들고 있는다.
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<any>(null);
+  const markersRef = useRef<any[]>([]);
+  const [mapStatus, setMapStatus] = useState<'loading' | 'ready' | 'unavailable'>('loading');
+
   const categories = ['전체', '한식', '양식/일식', '카페/디저트', '분식', '술집/야식'];
 
   const campusSpots = foodSpots.filter((spot) => spot.campus === campus);
@@ -43,6 +60,61 @@ export const FoodSpotMap: React.FC<FoodSpotMapProps> = ({
       spot.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCat && matchesSearch;
   });
+
+  // 지도 초기화 (최초 1회) — index.html에서 autoload=false로 SDK를 불러오므로
+  // kakao.maps.load 콜백이 실행돼야 실제 지도/지오코더 API를 쓸 수 있다.
+  useEffect(() => {
+    if (!window.kakao?.maps) {
+      setMapStatus('unavailable');
+      return;
+    }
+    window.kakao.maps.load(() => {
+      if (!mapContainerRef.current) return;
+      const center = new window.kakao.maps.LatLng(CAMPUS_CENTER.lat, CAMPUS_CENTER.lng);
+      mapRef.current = new window.kakao.maps.Map(mapContainerRef.current, {
+        center,
+        level: 4,
+      });
+      setMapStatus('ready');
+    });
+  }, []);
+
+  // 핀 목록이 바뀔 때마다(필터링/제보 추가 등) 주소를 지오코딩해서 마커를 다시 찍는다.
+  useEffect(() => {
+    if (mapStatus !== 'ready' || !mapRef.current) return;
+
+    markersRef.current.forEach((m) => m.setMap(null));
+    markersRef.current = [];
+
+    if (filteredSpots.length === 0) return;
+
+    const geocoder = new window.kakao.maps.services.Geocoder();
+    const bounds = new window.kakao.maps.LatLngBounds();
+    let placed = 0;
+
+    filteredSpots.forEach((spot) => {
+      geocoder.addressSearch(spot.address, (result: any[], status: string) => {
+        const position =
+          status === window.kakao.maps.services.Status.OK
+            ? new window.kakao.maps.LatLng(Number(result[0].y), Number(result[0].x))
+            : new window.kakao.maps.LatLng(CAMPUS_CENTER.lat, CAMPUS_CENTER.lng);
+
+        const marker = new window.kakao.maps.Marker({ position, map: mapRef.current, title: spot.name });
+        window.kakao.maps.event.addListener(marker, 'click', () => {
+          setSelectedSpot(spot);
+          setActiveImageIndex(0);
+        });
+        markersRef.current.push(marker);
+
+        bounds.extend(position);
+        placed += 1;
+        if (placed === filteredSpots.length) {
+          mapRef.current.setBounds(bounds);
+        }
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mapStatus, filteredSpots.map((s) => s.id + s.address).join(',')]);
 
   const handleCopyAddress = (address: string) => {
     navigator.clipboard.writeText(address);
@@ -68,8 +140,6 @@ export const FoodSpotMap: React.FC<FoodSpotMapProps> = ({
       name: newSpotName.trim(),
       category: newSpotCategory,
       address: newSpotAddress.trim(),
-      lat: Math.floor(Math.random() * 60) + 20,
-      lng: Math.floor(Math.random() * 60) + 20,
       rating: 5.0,
       phone: newSpotPhone.trim() || '02-300-0000',
       images,
@@ -149,63 +219,23 @@ export const FoodSpotMap: React.FC<FoodSpotMapProps> = ({
         </div>
       </div>
 
-      {/* Interactive Custom Map Visual Canvas */}
-      <div className="relative w-full h-[320px] sm:h-[380px] bg-slate-100 rounded-2xl border-2 border-slate-200/90 overflow-hidden shadow-inner flex flex-col justify-between">
-        {/* Map Styled Background Canvas Mockup */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-85"
-          style={{
-            backgroundImage: `radial-gradient(#0577b222 1px, transparent 1px), radial-gradient(#0a174c15 1px, #f8fafc 1px)`,
-            backgroundSize: '24px 24px',
-            backgroundPosition: '0 0, 12px 12px',
-          }}
-        />
+      {/* Kakao Map */}
+      <div className="relative w-full h-[320px] sm:h-[380px] bg-slate-100 rounded-2xl border-2 border-slate-200/90 overflow-hidden shadow-inner">
+        <div ref={mapContainerRef} className="absolute inset-0" />
 
         {/* Campus Map Label overlay */}
-        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-extrabold text-[#0A174C] shadow-xs flex items-center gap-1.5 z-10">
+        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-extrabold text-[#0A174C] shadow-xs flex items-center gap-1.5 z-10 pointer-events-none">
           <MapPin className="w-3.5 h-3.5 text-[#0577B2]" />
           <span>명지전문대 주변</span>
         </div>
 
-        {/* Pin Markers Dropped on Map */}
-        <div className="absolute inset-0 p-8 z-20">
-          {filteredSpots.map((spot) => {
-            const isSelected = selectedSpot?.id === spot.id;
-            return (
-              <div
-                key={spot.id}
-                style={{ top: `${spot.lat}%`, left: `${spot.lng}%` }}
-                className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-transform hover:scale-110 z-20"
-                onClick={() => {
-                  setSelectedSpot(spot);
-                  setActiveImageIndex(0);
-                }}
-              >
-                {/* Pin Tooltip */}
-                <div
-                  className={`px-2 py-0.5 rounded-md text-[10px] font-extrabold shadow-md whitespace-nowrap mb-1 transition-all border ${
-                    isSelected
-                      ? 'bg-[#0A174C] text-white border-white ring-2 ring-sky-300'
-                      : 'bg-white text-slate-800 border-slate-200 group-hover:bg-[#0577B2] group-hover:text-white'
-                  }`}
-                >
-                  {spot.name} ⭐{spot.rating}
-                </div>
-
-                {/* Pin Marker Icon */}
-                <div
-                  className={`w-7 h-7 mx-auto rounded-full flex items-center justify-center shadow-lg transition-transform ${
-                    isSelected
-                      ? 'bg-[#0577B2] text-white ring-4 ring-sky-300 scale-125'
-                      : 'bg-[#0A174C] text-amber-300 border-2 border-white'
-                  }`}
-                >
-                  <MapPin className="w-4 h-4" />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {mapStatus !== 'ready' && (
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
+            <p className="text-xs font-bold text-slate-400">
+              {mapStatus === 'loading' ? '지도를 불러오는 중...' : '카카오맵 API 키가 설정되지 않아 지도를 표시할 수 없습니다.'}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Spots Grid List */}
