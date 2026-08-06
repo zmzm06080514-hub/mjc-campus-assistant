@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserRole, UserProfile } from '../types';
-import { Mail, Shield, ShieldCheck, User, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { Mail, Shield, ShieldCheck, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 interface HeaderProps {
   userRole: UserRole;
@@ -9,8 +9,6 @@ interface HeaderProps {
   unreadNotesCount: number;
   onOpenNotes: () => void;
   onOpenAdmin: () => void;
-  isGlobalAnonymous: boolean;
-  setIsGlobalAnonymous: (anon: boolean) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,8 +18,6 @@ export const Header: React.FC<HeaderProps> = ({
   unreadNotesCount,
   onOpenNotes,
   onOpenAdmin,
-  isGlobalAnonymous,
-  setIsGlobalAnonymous,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
@@ -51,20 +47,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Utility Buttons */}
         <div className="flex items-center gap-2">
-          {/* Identity Selector Button */}
-          <button
-            onClick={() => setIsGlobalAnonymous(!isGlobalAnonymous)}
-            title="기본 포스팅/댓글 익명 설정 변경"
-            className={`hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-medium transition-all ${
-              isGlobalAnonymous
-                ? 'bg-slate-800 text-slate-200 border-slate-700'
-                : 'bg-sky-50 text-[#0577B2] border-sky-200'
-            }`}
-          >
-            <User className="w-3.5 h-3.5" />
-            <span>{isGlobalAnonymous ? '기본: 익명 모드' : `ID: ${currentUser.nickname}`}</span>
-          </button>
-
           {/* Admin Mode Switcher */}
           <button
             onClick={() => {
@@ -115,18 +97,6 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
         </div>
-      </div>
-
-      {/* Mobile Identity Toggle Bar */}
-      <div className="sm:hidden px-4 pb-2 flex items-center justify-between gap-2">
-        <span className="text-[11px] text-slate-500 font-semibold">명지전문대 학생 전용</span>
-
-        <button
-          onClick={() => setIsGlobalAnonymous(!isGlobalAnonymous)}
-          className="px-2 py-1 rounded-lg border text-[11px] font-medium bg-slate-100 text-slate-700 shrink-0"
-        >
-          {isGlobalAnonymous ? '익명' : '닉네임'}
-        </button>
       </div>
     </header>
   );

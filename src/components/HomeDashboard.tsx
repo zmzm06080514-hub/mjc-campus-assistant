@@ -52,7 +52,6 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   onShowToast,
 }) => {
   const [activeFeedFilter, setActiveFeedFilter] = useState<'meal' | 'class' | 'notice' | 'event'>('meal');
-  const [isAnonMode, setIsAnonMode] = useState<boolean>(true);
 
   const campusBuses = busRoutes.filter((b) => b.campus === campus);
   const topBus = campusBuses[0] || busRoutes[0];
@@ -267,25 +266,6 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 이벤트
               </button>
             </div>
-
-            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
-              <button
-                onClick={() => setIsAnonMode(true)}
-                className={`px-2 py-1 text-[11px] font-bold rounded-md transition-all ${
-                  isAnonMode ? 'bg-white shadow-2xs text-slate-900' : 'text-slate-400'
-                }`}
-              >
-                익명
-              </button>
-              <button
-                onClick={() => setIsAnonMode(false)}
-                className={`px-2 py-1 text-[11px] font-bold rounded-md transition-all ${
-                  !isAnonMode ? 'bg-white shadow-2xs text-[#0577B2]' : 'text-slate-400'
-                }`}
-              >
-                ID 표시
-              </button>
-            </div>
           </header>
 
           <div className="p-4 space-y-4">
@@ -304,11 +284,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               </div>
             ) : (
               activeFeedPosts.map((post) => {
-                const displayName = post.isAnonymous
-                  ? isAnonMode
-                    ? '익명의 명지인'
-                    : post.authorName
-                  : post.authorName;
+                const displayName = post.isAnonymous ? '익명의 명지인' : post.authorName;
                 return (
                   <article
                     key={post.id}

@@ -45,7 +45,6 @@ export default function App() {
   // 명지전문대 단일 캠퍼스만 지원합니다 (전환 UI 없음).
   const campus: CampusType = 'seoul';
   const [userRole, setUserRole] = useState<UserRole>('user');
-  const [isGlobalAnonymous, setIsGlobalAnonymous] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<MainTab>('home');
 
   // Application Dynamic State
@@ -149,7 +148,7 @@ export default function App() {
       targetId: reportTarget.id,
       targetTitleOrContent: reportTarget.titleOrContent,
       authorName: reportTarget.authorName,
-      reporterName: isGlobalAnonymous ? '익명의 명지인' : CURRENT_USER.nickname,
+      reporterName: '익명의 명지인',
       reason: reportReason.trim(),
       status: 'pending',
       createdAt: '방금 전',
@@ -175,8 +174,6 @@ export default function App() {
           setIsChatOpen(true);
         }}
         onOpenAdmin={() => setIsAdminPanelOpen(true)}
-        isGlobalAnonymous={isGlobalAnonymous}
-        setIsGlobalAnonymous={setIsGlobalAnonymous}
       />
 
       {/* Main Navigation */}
@@ -241,7 +238,6 @@ export default function App() {
             onOpenSendNote={handleOpenDm}
             onOpenMealChat={handleOpenMealChat}
             onShowToast={showToast}
-            isGlobalAnonymous={isGlobalAnonymous}
           />
         )}
 
@@ -252,7 +248,6 @@ export default function App() {
             setPosts={setPosts}
             currentUser={CURRENT_USER}
             userRole={userRole}
-            isGlobalAnonymous={isGlobalAnonymous}
             onOpenCreateModal={() => setIsCreatePostModalOpen(true)}
             onOpenSendNote={handleOpenDm}
             onReportContent={handleTriggerReport}
@@ -267,7 +262,6 @@ export default function App() {
           campus={campus}
           currentUser={CURRENT_USER}
           userRole={userRole}
-          isGlobalAnonymous={isGlobalAnonymous}
           onClose={() => setIsCreatePostModalOpen(false)}
           onSubmitPost={(newPost) => setPosts([newPost, ...posts])}
           onShowToast={showToast}

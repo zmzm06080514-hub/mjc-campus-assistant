@@ -27,7 +27,6 @@ interface CommunityFeedProps {
   setPosts: React.Dispatch<React.SetStateAction<CommunityPost[]>>;
   currentUser: UserProfile;
   userRole: UserRole;
-  isGlobalAnonymous: boolean;
   onOpenCreateModal: () => void;
   onOpenSendNote: (receiverId: string, receiverName: string, relatedTitle?: string) => void;
   onReportContent: (type: 'post' | 'comment', id: string, titleOrContent: string, authorName: string) => void;
@@ -40,7 +39,6 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({
   setPosts,
   currentUser,
   userRole,
-  isGlobalAnonymous,
   onOpenCreateModal,
   onOpenSendNote,
   onReportContent,
@@ -85,7 +83,7 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({
     const text = commentInputs[postId]?.trim();
     if (!text) return;
 
-    const isAnon = commentIsAnon[postId] ?? isGlobalAnonymous;
+    const isAnon = commentIsAnon[postId] ?? true;
 
     const newComment: PostComment = {
       id: `cmt_${Date.now()}`,
@@ -411,16 +409,16 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({
                           onClick={() =>
                             setCommentIsAnon({
                               ...commentIsAnon,
-                              [post.id]: !(commentIsAnon[post.id] ?? isGlobalAnonymous),
+                              [post.id]: !(commentIsAnon[post.id] ?? true),
                             })
                           }
                           className={`px-2 py-0.5 rounded-md font-extrabold transition-all ${
-                            (commentIsAnon[post.id] ?? isGlobalAnonymous)
+                            (commentIsAnon[post.id] ?? true)
                               ? 'bg-slate-800 text-white'
                               : 'bg-[#0577B2] text-white'
                           }`}
                         >
-                          {(commentIsAnon[post.id] ?? isGlobalAnonymous)
+                          {(commentIsAnon[post.id] ?? true)
                             ? '익명'
                             : currentUser.nickname}
                         </button>

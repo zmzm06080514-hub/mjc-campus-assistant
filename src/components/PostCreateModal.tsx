@@ -6,7 +6,6 @@ interface PostCreateModalProps {
   campus: CampusType;
   currentUser: UserProfile;
   userRole: UserRole;
-  isGlobalAnonymous: boolean;
   onClose: () => void;
   onSubmitPost: (newPost: CommunityPost) => void;
   onShowToast: (msg: string) => void;
@@ -16,7 +15,6 @@ export const PostCreateModal: React.FC<PostCreateModalProps> = ({
   campus,
   currentUser,
   userRole,
-  isGlobalAnonymous,
   onClose,
   onSubmitPost,
   onShowToast,
@@ -24,7 +22,7 @@ export const PostCreateModal: React.FC<PostCreateModalProps> = ({
   const [tab, setTab] = useState<PostTab>('meal');
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const [isAnon, setIsAnon] = useState<boolean>(isGlobalAnonymous);
+  const [isAnon, setIsAnon] = useState<boolean>(true);
 
   // Images state (2 to 3 images)
   const [image1, setImage1] = useState<string>('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80');
