@@ -23,6 +23,7 @@ import {
 } from './data/mockData';
 import { fetchLiveNotices } from './data/liveNotices';
 import { useChatIdentity } from './hooks/useChatIdentity';
+import { useAdminAuth } from './hooks/useAdminAuth';
 import { subscribeMyChats } from './data/chat';
 
 import { Header } from './components/Header';
@@ -38,13 +39,16 @@ import { PostCreateModal } from './components/PostCreateModal';
 import { ChatDrawer } from './components/ChatDrawer';
 import { NicknameModal } from './components/NicknameModal';
 import { AdminPanel } from './components/AdminPanel';
+import { LoginModal } from './components/LoginModal';
 import { Toast } from './components/Toast';
 import { AlertTriangle } from 'lucide-react';
 
 export default function App() {
   // 명지전문대 단일 캠퍼스만 지원합니다 (전환 UI 없음).
   const campus: CampusType = 'seoul';
-  const [userRole, setUserRole] = useState<UserRole>('user');
+  const adminAuth = useAdminAuth();
+  const userRole: UserRole = adminAuth.isAdmin ? 'admin' : 'user';
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<MainTab>('home');
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
@@ -165,8 +169,6 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-20 sm:pb-8 flex flex-col">
       {/* Top Header */}
       <Header
-        userRole={userRole}
-        setUserRole={setUserRole}
         currentUser={CURRENT_USER}
         unreadNotesCount={myChatCount.withActivity}
         onOpenNotes={() => {
@@ -176,6 +178,10 @@ export default function App() {
         }}
         onOpenAdmin={() => setIsAdminPanelOpen(true)}
         onToggleSidebar={() => setIsSidebarOpen((v) => !v)}
+        isAdmin={adminAuth.isAdmin}
+        isLoggedIn={Boolean(adminAuth.user)}
+        onOpenLogin={() => setIsLoginModalOpen(true)}
+        onLogout={() => adminAuth.logout()}
       />
 
       <Sidebar
@@ -293,6 +299,14 @@ export default function App() {
           setPosts={setPosts}
           onClose={() => setIsAdminPanelOpen(false)}
           onShowToast={showToast}
+        />
+      )}
+
+      {isLoginModalOpen && (
+        <LoginModal
+          onLogin={adminAuth.login}
+          onSignup={adminAuth.signup}
+          onClose={() => setIsLoginModalOpen(false)}
         />
       )}
 

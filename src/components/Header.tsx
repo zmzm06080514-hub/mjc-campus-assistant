@@ -1,25 +1,29 @@
 import React from 'react';
-import { UserRole, UserProfile } from '../types';
-import { Mail, Menu, Shield, ShieldCheck, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { UserProfile } from '../types';
+import { Mail, Menu, LogIn, LogOut, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 interface HeaderProps {
-  userRole: UserRole;
-  setUserRole: (r: UserRole) => void;
   currentUser: UserProfile;
   unreadNotesCount: number;
   onOpenNotes: () => void;
   onOpenAdmin: () => void;
   onToggleSidebar: () => void;
+  isAdmin: boolean;
+  isLoggedIn: boolean;
+  onOpenLogin: () => void;
+  onLogout: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  userRole,
-  setUserRole,
   currentUser,
   unreadNotesCount,
   onOpenNotes,
   onOpenAdmin,
   onToggleSidebar,
+  isAdmin,
+  isLoggedIn,
+  onOpenLogin,
+  onLogout,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
@@ -57,39 +61,41 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Utility Buttons */}
         <div className="flex items-center gap-2">
-          {/* Admin Mode Switcher */}
-          <button
-            onClick={() => {
-              const newRole = userRole === 'admin' ? 'user' : 'admin';
-              setUserRole(newRole);
-            }}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
-              userRole === 'admin'
-                ? 'bg-amber-50 text-amber-800 border-amber-300 ring-2 ring-amber-400/30'
-                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-            }`}
-          >
-            {userRole === 'admin' ? (
-              <>
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-                <span>관리자 모드</span>
-              </>
-            ) : (
-              <>
-                <Shield className="w-3.5 h-3.5 text-slate-500" />
-                <span className="hidden sm:inline">학생 모드</span>
-              </>
-            )}
-          </button>
-
-          {/* Admin Management Panel Button if Admin */}
-          {userRole === 'admin' && (
+          {/* 관리자 인증 상태에 따른 버튼 */}
+          {isAdmin ? (
+            <>
+              <button
+                onClick={onOpenAdmin}
+                className="px-2.5 py-1.5 bg-[#0A174C] text-white rounded-lg text-xs font-bold hover:bg-[#0577B2] transition-colors flex items-center gap-1"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span>신고/공지 관리</span>
+              </button>
+              <button
+                onClick={onLogout}
+                className="p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition-colors border border-slate-200/80"
+                title="로그아웃"
+                aria-label="로그아웃"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </>
+          ) : isLoggedIn ? (
             <button
-              onClick={onOpenAdmin}
-              className="px-2.5 py-1.5 bg-[#0A174C] text-white rounded-lg text-xs font-bold hover:bg-[#0577B2] transition-colors flex items-center gap-1"
+              onClick={onLogout}
+              className="px-2.5 py-1.5 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-100 transition-all flex items-center gap-1"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>신고/공지 관리</span>
+              <LogOut className="w-3.5 h-3.5" />
+              <span>로그아웃</span>
+            </button>
+          ) : (
+            <button
+              onClick={onOpenLogin}
+              className="px-2.5 py-1.5 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-100 transition-all flex items-center gap-1"
+              title="관리자 로그인"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">관리자 로그인</span>
             </button>
           )}
 
