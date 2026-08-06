@@ -60,6 +60,17 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   const campusPosts = posts.filter((p) => p.campus === campus);
   const topFoodSpots = foodSpots.filter((f) => f.campus === campus);
 
+  // 활동 피드 탭(밥매칭/강의소식/공지/이벤트) -> 실제 게시글 tab 값 매핑
+  const feedTabToPostTab: Record<'meal' | 'class' | 'notice' | 'event', CommunityPost['tab']> = {
+    meal: 'meal',
+    class: 'lecture',
+    notice: 'notice',
+    event: 'event',
+  };
+  const activeFeedPosts = campusPosts
+    .filter((p) => p.tab === feedTabToPostTab[activeFeedFilter])
+    .slice(0, 3);
+
   const handleCopy = (addr: string) => {
     navigator.clipboard.writeText(addr);
     onShowToast(`📍 주소가 복사되었습니다: "${addr}"`);
@@ -249,84 +260,81 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </header>
 
           <div className="p-4 space-y-4">
-            {/* Meal Match Featured Post */}
-            <article className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs">
-              <div className="p-3.5 flex items-center justify-between border-b border-slate-100">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">
-                    {isAnonMode ? '익' : '백호'}
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-slate-900 block">
-                      {isAnonMode ? '익명의 명지인' : '백호99'}
-                    </span>
-                    <span className="text-[10px] text-slate-400">방금 전 · 학생회관 앞</span>
-                  </div>
-                </div>
-                <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-md text-[10px] font-extrabold">
-                  3/4명 모집 중
-                </span>
-              </div>
-
-              <div className="p-3.5 space-y-3">
-                <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                  오늘 학생회관 앞에서 밥 같이 먹을 분! <br />
-                  메뉴는 돈까스 생각 중입니다. 편하게 쪽지나 댓글 주세요~
+            {activeFeedPosts.length === 0 ? (
+              <div className="py-10 text-center">
+                <MessageSquare className="w-8 h-8 mx-auto text-slate-300 mb-2" />
+                <p className="text-xs font-bold text-slate-500">
+                  아직 이 탭에 게시글이 없습니다.
                 </p>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <img
-                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80"
-                    alt="Food"
-                    className="w-full h-24 object-cover rounded-xl"
-                  />
-                  <img
-                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80"
-                    alt="Food"
-                    className="w-full h-24 object-cover rounded-xl"
-                  />
-                </div>
-              </div>
-
-              <div className="p-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs font-bold">
-                <div className="flex items-center gap-3">
-                  <button className="flex items-center gap-1 text-rose-500 hover:opacity-80">
-                    <Heart className="w-3.5 h-3.5 fill-rose-500" />
-                    <span>24</span>
-                  </button>
-                  <button
-                    onClick={() => onNavigate('community')}
-                    className="flex items-center gap-1 text-slate-600 hover:text-slate-900"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>댓글 12</span>
-                  </button>
-                </div>
-
                 <button
-                  onClick={() => onNavigate('meal')}
-                  className="px-3 py-1 bg-[#0A174C] text-white rounded-lg text-[11px] font-bold hover:bg-[#0577B2] transition-colors"
+                  onClick={() => onNavigate('community')}
+                  className="mt-3 text-xs font-bold text-[#0577B2] hover:underline"
                 >
-                  참여하기
+                  게시글 전체 보러가기 →
                 </button>
               </div>
-            </article>
+            ) : (
+              activeFeedPosts.map((post) => {
+                const displayName = post.isAnonymous
+                  ? isAnonMode
+                    ? '익명의 명지인'
+                    : post.authorName
+                  : post.authorName;
+                return (
+                  <article
+                    key={post.id}
+                    onClick={() => onNavigate('community')}
+                    className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs cursor-pointer hover:border-[#0577B2] transition-colors"
+                  >
+                    <div className="p-3.5 flex items-center justify-between border-b border-slate-100">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600 shrink-0">
+                          {displayName.slice(0, 1)}
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-slate-900 block">{displayName}</span>
+                          <span className="text-[10px] text-slate-400">{post.createdAt}</span>
+                        </div>
+                      </div>
+                      {post.isNotice && (
+                        <span className="px-2 py-0.5 bg-[#0577B2]/10 text-[#0577B2] rounded text-[10px] font-bold uppercase shrink-0">
+                          공지
+                        </span>
+                      )}
+                    </div>
 
-            {/* Official Announcement Card */}
-            <article
-              onClick={() => onNavigate('community')}
-              className="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 shadow-2xs hover:bg-sky-50/40 transition-colors cursor-pointer space-y-1.5"
-            >
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 bg-[#0577B2]/10 text-[#0577B2] rounded text-[10px] font-bold uppercase">
-                  공지
-                </span>
-                <span className="text-xs font-bold text-slate-900">2026 백마축제 아티스트 라인업 공개!</span>
-              </div>
-              <p className="text-xs text-slate-500 truncate">
-                이번 백마축제 라인업이 드디어 공개되었습니다. 자세한 사항은 학생회 소식을 확인하세요...
-              </p>
-            </article>
+                    <div className="p-3.5 space-y-2">
+                      <p className="text-xs font-bold text-slate-900">{post.title}</p>
+                      <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">{post.content}</p>
+
+                      {post.images.length > 0 && (
+                        <div className="grid grid-cols-2 gap-2">
+                          {post.images.slice(0, 2).map((src, i) => (
+                            <img
+                              key={i}
+                              src={src}
+                              alt=""
+                              className="w-full h-24 object-cover rounded-xl"
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="p-3 border-t border-slate-100 bg-slate-50/50 flex items-center gap-3 text-xs font-bold text-slate-600">
+                      <span className="flex items-center gap-1">
+                        <Heart className="w-3.5 h-3.5" />
+                        {post.likesCount}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        댓글 {post.comments.length}
+                      </span>
+                    </div>
+                  </article>
+                );
+              })
+            )}
           </div>
         </main>
 
