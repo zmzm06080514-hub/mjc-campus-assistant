@@ -11,18 +11,6 @@ export const CURRENT_USER: UserProfile = {
 
 export const INITIAL_BUS_ROUTES: BusRoute[] = [
   {
-    id: 'bus_seoul_shuttle_2',
-    campus: 'seoul',
-    busNumber: '명지전문대 직행 셔틀',
-    routeType: 'shuttle',
-    destination: '신촌역(2호선) ↔ 명지전문대 본관',
-    nextArrivalMinutes: 7,
-    stopsAway: 3,
-    crowdedness: '여유',
-    operatingHours: '08:20 - 17:50 (15분 간격)',
-    stops: ['명지전문대 본관', '모래내시장', '신촌역 1번출구']
-  },
-  {
     id: 'bus_seoul_7019',
     campus: 'seoul',
     busNumber: '7019번 시내버스',
@@ -55,8 +43,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '엄마손떡볶이',
     category: '분식',
     address: '서울 서대문구 증가로10길 16-20',
-    lat: 38,
-    lng: 42,
     rating: 4.8,
     phone: '02-304-0089',
     images: [
@@ -78,8 +64,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '거북골 돈까스&우동',
     category: '양식/일식',
     address: '서울 서대문구 거북골로 33-1 1층',
-    lat: 55,
-    lng: 60,
     rating: 4.7,
     phone: '02-372-9921',
     images: [
@@ -99,8 +83,6 @@ export const INITIAL_FOOD_SPOTS: FoodSpot[] = [
     name: '명지 브라운 로스터리',
     category: '카페/디저트',
     address: '서울 서대문구 거북골로 21-4 2층',
-    lat: 25,
-    lng: 70,
     rating: 4.9,
     phone: '02-302-1209',
     images: [
@@ -251,8 +233,8 @@ export const INITIAL_COMMUNITY_POSTS: CommunityPost[] = [
     id: 'post_1',
     campus: 'seoul',
     tab: 'notice',
-    title: '📢 [공지] 2026학년도 2학기 명지전문대 셔틀버스 운행 시간표 안내',
-    content: '학우 여러분 안녕하세요! 학생복지처입니다. 개강을 맞아 증산역/신촌역 셔틀버스 노선 운행 시간이 조정되었으니 참고하시길 바랍니다.',
+    title: '📢 [공지] 2026학년도 2학기 중앙도서관 연장 개관 안내',
+    content: '학우 여러분 안녕하세요! 학생복지처입니다. 개강을 맞아 중앙도서관 열람실 운영 시간이 연장되오니 참고하시길 바랍니다.',
     images: [
       'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80'
@@ -272,7 +254,7 @@ export const INITIAL_COMMUNITY_POSTS: CommunityPost[] = [
         authorId: 'usr_05',
         authorName: '익명1',
         isAnonymous: true,
-        content: '증산역 막차 시간 10분 늘어나서 정말 다행이네요!',
+        content: '자정까지 연장돼서 시험기간에 정말 다행이네요!',
         createdAt: '45분 전',
         reportsCount: 0
       }

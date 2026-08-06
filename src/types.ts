@@ -39,8 +39,6 @@ export interface FoodSpot {
   name: string;
   category: '한식' | '양식/일식' | '중식' | '카페/디저트' | '술집/야식' | '분식';
   address: string;
-  lat: number; // percentage offset for custom interactive map (0-100)
-  lng: number; // percentage offset for custom interactive map (0-100)
   rating: number;
   phone: string;
   images: string[];

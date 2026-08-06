@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BusRoute, CampusType } from '../types';
-import { Bus, RefreshCw, Clock, MapPin, AlertCircle, Info, ChevronRight, Sparkles, Radio } from 'lucide-react';
+import { Bus, RefreshCw, MapPin, AlertCircle, Info, ChevronRight, Radio } from 'lucide-react';
 import { fetchLiveBusArrival, LiveBusArrival } from '../data/liveBus';
 
 interface BusTrackerProps {
@@ -70,7 +70,6 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
 
   const filteredRoutes = busRoutes.filter((r) => {
     if (r.campus !== campus) return false;
-    if (filterType === 'shuttle') return r.routeType === 'shuttle';
     if (filterType === 'city') return r.routeType === 'city' || r.routeType === 'express';
     return true;
   });
@@ -96,37 +95,26 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
 
   return (
     <div className="space-y-4">
-      {/* Top Banner & Control */}
-      <div className="bg-gradient-to-r from-[#0A174C] to-[#0577B2] text-white p-5 rounded-2xl shadow-md relative overflow-hidden">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-xs font-bold mb-2 backdrop-blur-xs">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>실시간 GPS 연동 명지전문대 버스 정보</span>
-            </div>
-            <h2 className="text-2xl font-black tracking-tight">
-              명지전문대 버스 도착정보
-            </h2>
-            <p className="text-xs text-sky-100/90 mt-1">
-              셔틀버스 및 정문/캠퍼스 주변 주요 버스 정류장 실시간 카운트다운
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 self-start md:self-auto">
-            <div className="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 text-xs font-medium flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-sky-200" />
-              <span>다음 갱신 {secondsRemaining}초 후</span>
-            </div>
-            <button
-              onClick={handleManualRefresh}
-              disabled={isRefreshing}
-              className="px-3 py-1.5 bg-white text-[#0A174C] font-bold text-xs rounded-xl hover:bg-sky-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
-              <span>새로고침</span>
-            </button>
-          </div>
+      {/* Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+        <div>
+          <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+            <Bus className="w-5 h-5 text-[#0577B2]" />
+            <span>명지전문대 버스 도착정보</span>
+          </h2>
+          <p className="text-xs text-slate-500 mt-0.5">
+            시내/직행 버스 정류장 실시간 카운트다운 (다음 갱신 {secondsRemaining}초 후)
+          </p>
         </div>
+
+        <button
+          onClick={handleManualRefresh}
+          disabled={isRefreshing}
+          className="px-3.5 py-2 bg-[#0A174C] hover:bg-[#0577B2] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 self-start sm:self-auto shrink-0"
+        >
+          <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+          <span>새로고침</span>
+        </button>
       </div>
 
       {/* Filter Tabs */}
@@ -140,16 +128,6 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
           }`}
         >
           전체 노선 ({busRoutes.filter((r) => r.campus === campus).length})
-        </button>
-        <button
-          onClick={() => setFilterType('shuttle')}
-          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
-            filterType === 'shuttle'
-              ? 'bg-[#0577B2] text-white shadow-xs'
-              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-          }`}
-        >
-          명지전문대 셔틀버스
         </button>
         <button
           onClick={() => setFilterType('city')}

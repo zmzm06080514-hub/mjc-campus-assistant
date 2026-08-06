@@ -23,10 +23,11 @@ import {
 } from './data/mockData';
 import { fetchLiveNotices } from './data/liveNotices';
 import { useChatIdentity } from './hooks/useChatIdentity';
+import { useAdminAuth } from './hooks/useAdminAuth';
 import { subscribeMyChats } from './data/chat';
 
 import { Header } from './components/Header';
-import { Navigation, MainTab } from './components/Navigation';
+import { Sidebar, MainTab } from './components/Sidebar';
 import { HomeDashboard } from './components/HomeDashboard';
 import { BusTracker } from './components/BusTracker';
 import { FoodSpotMap } from './components/FoodSpotMap';
@@ -38,15 +39,18 @@ import { PostCreateModal } from './components/PostCreateModal';
 import { ChatDrawer } from './components/ChatDrawer';
 import { NicknameModal } from './components/NicknameModal';
 import { AdminPanel } from './components/AdminPanel';
+import { LoginModal } from './components/LoginModal';
 import { Toast } from './components/Toast';
 import { AlertTriangle } from 'lucide-react';
 
 export default function App() {
   // 명지전문대 단일 캠퍼스만 지원합니다 (전환 UI 없음).
   const campus: CampusType = 'seoul';
-  const [userRole, setUserRole] = useState<UserRole>('user');
-  const [isGlobalAnonymous, setIsGlobalAnonymous] = useState<boolean>(true);
+  const adminAuth = useAdminAuth();
+  const userRole: UserRole = adminAuth.isAdmin ? 'admin' : 'user';
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<MainTab>('home');
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   // Application Dynamic State
   const [busRoutes, setBusRoutes] = useState<BusRoute[]>(INITIAL_BUS_ROUTES);
@@ -149,7 +153,7 @@ export default function App() {
       targetId: reportTarget.id,
       targetTitleOrContent: reportTarget.titleOrContent,
       authorName: reportTarget.authorName,
-      reporterName: isGlobalAnonymous ? '익명의 명지인' : CURRENT_USER.nickname,
+      reporterName: '익명의 명지인',
       reason: reportReason.trim(),
       status: 'pending',
       createdAt: '방금 전',
@@ -162,11 +166,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-20 sm:pb-8 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
       {/* Top Header */}
       <Header
-        userRole={userRole}
-        setUserRole={setUserRole}
         currentUser={CURRENT_USER}
         unreadNotesCount={myChatCount.withActivity}
         onOpenNotes={() => {
@@ -175,12 +177,16 @@ export default function App() {
           setIsChatOpen(true);
         }}
         onOpenAdmin={() => setIsAdminPanelOpen(true)}
-        isGlobalAnonymous={isGlobalAnonymous}
-        setIsGlobalAnonymous={setIsGlobalAnonymous}
+        onToggleSidebar={() => setIsSidebarOpen((v) => !v)}
+        isAdmin={adminAuth.isAdmin}
+        isLoggedIn={Boolean(adminAuth.user)}
+        onOpenLogin={() => setIsLoginModalOpen(true)}
+        onLogout={() => adminAuth.logout()}
       />
 
-      {/* Main Navigation */}
-      <Navigation
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         pendingAssignmentsCount={pendingAssignmentsCount}
@@ -199,10 +205,6 @@ export default function App() {
             posts={posts}
             foodSpots={foodSpots}
             onNavigate={(t) => setActiveTab(t)}
-            onCreatePost={() => {
-              setActiveTab('community');
-              setIsCreatePostModalOpen(true);
-            }}
             onShowToast={showToast}
           />
         )}
@@ -241,7 +243,6 @@ export default function App() {
             onOpenSendNote={handleOpenDm}
             onOpenMealChat={handleOpenMealChat}
             onShowToast={showToast}
-            isGlobalAnonymous={isGlobalAnonymous}
           />
         )}
 
@@ -252,7 +253,6 @@ export default function App() {
             setPosts={setPosts}
             currentUser={CURRENT_USER}
             userRole={userRole}
-            isGlobalAnonymous={isGlobalAnonymous}
             onOpenCreateModal={() => setIsCreatePostModalOpen(true)}
             onOpenSendNote={handleOpenDm}
             onReportContent={handleTriggerReport}
@@ -267,7 +267,6 @@ export default function App() {
           campus={campus}
           currentUser={CURRENT_USER}
           userRole={userRole}
-          isGlobalAnonymous={isGlobalAnonymous}
           onClose={() => setIsCreatePostModalOpen(false)}
           onSubmitPost={(newPost) => setPosts([newPost, ...posts])}
           onShowToast={showToast}
@@ -300,6 +299,14 @@ export default function App() {
           setPosts={setPosts}
           onClose={() => setIsAdminPanelOpen(false)}
           onShowToast={showToast}
+        />
+      )}
+
+      {isLoginModalOpen && (
+        <LoginModal
+          onLogin={adminAuth.login}
+          onSignup={adminAuth.signup}
+          onClose={() => setIsLoginModalOpen(false)}
         />
       )}
 

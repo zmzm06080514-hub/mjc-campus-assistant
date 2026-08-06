@@ -10,7 +10,6 @@ interface MealMatchingProps {
   onOpenSendNote: (receiverId: string, receiverName: string, relatedTitle?: string) => void;
   onOpenMealChat: (mealMatchId: string, title: string) => void;
   onShowToast: (msg: string) => void;
-  isGlobalAnonymous: boolean;
 }
 
 export const MealMatching: React.FC<MealMatchingProps> = ({
@@ -21,7 +20,6 @@ export const MealMatching: React.FC<MealMatchingProps> = ({
   onOpenSendNote,
   onOpenMealChat,
   onShowToast,
-  isGlobalAnonymous,
 }) => {
   const [filterType, setFilterType] = useState<string>('전체');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -33,7 +31,7 @@ export const MealMatching: React.FC<MealMatchingProps> = ({
   const [targetTime, setTargetTime] = useState<string>('12:30');
   const [maxPeople, setMaxPeople] = useState<number>(3);
   const [description, setDescription] = useState<string>('');
-  const [isAnonPost, setIsAnonPost] = useState<boolean>(isGlobalAnonymous);
+  const [isAnonPost, setIsAnonPost] = useState<boolean>(true);
 
   const campusMatches = mealMatches.filter((m) => m.campus === campus);
 
