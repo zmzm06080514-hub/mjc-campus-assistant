@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CampusType,
   UserRole,
@@ -23,6 +23,7 @@ import {
   INITIAL_NOTES,
   INITIAL_REPORTS,
 } from './data/mockData';
+import { fetchLiveNotices } from './data/liveNotices';
 
 import { Header } from './components/Header';
 import { Navigation, MainTab } from './components/Navigation';
@@ -55,6 +56,20 @@ export default function App() {
   const [posts, setPosts] = useState<CommunityPost[]>(INITIAL_COMMUNITY_POSTS);
   const [notes, setNotes] = useState<NoteMessage[]>(INITIAL_NOTES);
   const [reports, setReports] = useState<ContentReport[]>(INITIAL_REPORTS);
+
+  // GitHub Actions가 매일 크롤링해 둔 실제 명지전문대 공지사항을 불러와
+  // 목업 게시글 위에 최신순으로 얹는다 (이미 들어와 있으면 건너뜀).
+  useEffect(() => {
+    fetchLiveNotices().then((liveNotices) => {
+      if (liveNotices.length === 0) return;
+      setPosts((prev) => {
+        const existingIds = new Set(prev.map((p) => p.id));
+        const newOnes = liveNotices.filter((n) => !existingIds.has(n.id));
+        if (newOnes.length === 0) return prev;
+        return [...newOnes, ...prev];
+      });
+    });
+  }, []);
 
   // Modal / Drawer & Toast Control
   const [isNoteDrawerOpen, setIsNoteDrawerOpen] = useState<boolean>(false);
