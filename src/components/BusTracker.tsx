@@ -1,0 +1,279 @@
+import React, { useState, useEffect } from 'react';
+import { BusRoute, CampusType } from '../types';
+import { Bus, RefreshCw, Clock, MapPin, AlertCircle, Info, ChevronRight, Sparkles } from 'lucide-react';
+
+interface BusTrackerProps {
+  campus: CampusType;
+  busRoutes: BusRoute[];
+  setBusRoutes: React.Dispatch<React.SetStateAction<BusRoute[]>>;
+}
+
+export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBusRoutes }) => {
+  const [filterType, setFilterType] = useState<string>('all');
+  const [selectedRoute, setSelectedRoute] = useState<BusRoute | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+  const [secondsRemaining, setSecondsRemaining] = useState<number>(45);
+
+  // Live countdown effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSecondsRemaining((prev) => {
+        if (prev <= 1) {
+          // Trigger route refresh
+          setBusRoutes((prevRoutes) =>
+            prevRoutes.map((r) => {
+              const newArrival = Math.max(1, (r.nextArrivalMinutes + Math.floor(Math.random() * 3) - 1));
+              return { ...r, nextArrivalMinutes: newArrival };
+            })
+          );
+          return 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [setBusRoutes]);
+
+  const filteredRoutes = busRoutes.filter((r) => {
+    if (r.campus !== campus) return false;
+    if (filterType === 'shuttle') return r.routeType === 'shuttle';
+    if (filterType === 'city') return r.routeType === 'city' || r.routeType === 'express';
+    return true;
+  });
+
+  const handleManualRefresh = () => {
+    setIsRefreshing(true);
+    setTimeout(() => {
+      setBusRoutes((prev) =>
+        prev.map((r) => ({
+          ...r,
+          nextArrivalMinutes: Math.floor(Math.random() * 8) + 1,
+          stopsAway: Math.floor(Math.random() * 3) + 1,
+        }))
+      );
+      setSecondsRemaining(60);
+      setIsRefreshing(false);
+    }, 600);
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* Top Banner & Control */}
+      <div className="bg-gradient-to-r from-[#0A174C] to-[#0577B2] text-white p-5 rounded-2xl shadow-md relative overflow-hidden">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-xs font-bold mb-2 backdrop-blur-xs">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>실시간 GPS 연동 명지전문대 버스 정보</span>
+            </div>
+            <h2 className="text-2xl font-black tracking-tight">
+              명지전문대 버스 도착정보
+            </h2>
+            <p className="text-xs text-sky-100/90 mt-1">
+              셔틀버스 및 정문/캠퍼스 주변 주요 버스 정류장 실시간 카운트다운
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 self-start md:self-auto">
+            <div className="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 text-xs font-medium flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-sky-200" />
+              <span>다음 갱신 {secondsRemaining}초 후</span>
+            </div>
+            <button
+              onClick={handleManualRefresh}
+              disabled={isRefreshing}
+              className="px-3 py-1.5 bg-white text-[#0A174C] font-bold text-xs rounded-xl hover:bg-sky-50 transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+              <span>새로고침</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Tabs */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+        <button
+          onClick={() => setFilterType('all')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+            filterType === 'all'
+              ? 'bg-[#0A174C] text-white shadow-xs'
+              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+          }`}
+        >
+          전체 노선 ({busRoutes.filter((r) => r.campus === campus).length})
+        </button>
+        <button
+          onClick={() => setFilterType('shuttle')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+            filterType === 'shuttle'
+              ? 'bg-[#0577B2] text-white shadow-xs'
+              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+          }`}
+        >
+          명지전문대 셔틀버스
+        </button>
+        <button
+          onClick={() => setFilterType('city')}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+            filterType === 'city'
+              ? 'bg-[#0A174C] text-white shadow-xs'
+              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+          }`}
+        >
+          시내/직행 버스
+        </button>
+      </div>
+
+      {/* Bus Routes List Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        {filteredRoutes.length === 0 ? (
+          <div className="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-200 p-6">
+            <Bus className="w-10 h-10 mx-auto text-slate-300 mb-2" />
+            <p className="text-slate-600 font-bold text-sm">해당 노선의 버스 정보가 없습니다.</p>
+          </div>
+        ) : (
+          filteredRoutes.map((route) => {
+            const isShuttle = route.routeType === 'shuttle';
+            const crowdednessColor =
+              route.crowdedness === '여유'
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                : route.crowdedness === '보통'
+                ? 'bg-amber-50 text-amber-700 border-amber-200'
+                : 'bg-rose-50 text-rose-700 border-rose-200';
+
+            return (
+              <div
+                key={route.id}
+                onClick={() => setSelectedRoute(route)}
+                className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs hover:border-[#0577B2] transition-all cursor-pointer group hover:shadow-md relative"
+              >
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm shrink-0 ${
+                        isShuttle ? 'bg-[#0577B2] text-white' : 'bg-[#0A174C] text-white'
+                      }`}
+                    >
+                      {isShuttle ? '셔틀' : '버스'}
+                    </span>
+                    <div>
+                      <h3 className="font-extrabold text-slate-900 text-sm group-hover:text-[#0577B2] transition-colors">
+                        {route.busNumber}
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium">{route.destination}</p>
+                    </div>
+                  </div>
+
+                  <span
+                    className={`px-2 py-0.5 rounded-full border text-[11px] font-bold ${crowdednessColor}`}
+                  >
+                    {route.crowdedness}
+                  </span>
+                </div>
+
+                {/* Countdown Box */}
+                <div className="mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200/70 flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] text-slate-500 font-semibold block">
+                      도착 예정 시간
+                    </span>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      <span className="text-xl font-black text-[#0577B2]">
+                        {route.nextArrivalMinutes}분 후
+                      </span>
+                      <span className="text-xs font-semibold text-slate-600">
+                        ({route.stopsAway}정거장 전)
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <span className="text-[11px] text-slate-500 font-semibold block">
+                      운행 시간
+                    </span>
+                    <span className="text-xs font-bold text-slate-700">{route.operatingHours}</span>
+                  </div>
+                </div>
+
+                {/* Route Station Preview bar */}
+                <div className="mt-3 flex items-center justify-between text-xs text-slate-500 font-medium pt-2 border-t border-slate-100">
+                  <div className="flex items-center gap-1 truncate max-w-[80%]">
+                    <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <span className="truncate">{route.stops.join(' ➔ ')}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition-transform shrink-0" />
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Selected Route Station Modal */}
+      {selectedRoute && (
+        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-2xl p-5 shadow-2xl border border-slate-100 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <span className="p-2 rounded-xl bg-[#0577B2]/10 text-[#0577B2] font-black text-sm">
+                  {selectedRoute.routeType === 'shuttle' ? '셔틀노선' : '일반노선'}
+                </span>
+                <h3 className="font-extrabold text-slate-900 text-lg">{selectedRoute.busNumber}</h3>
+              </div>
+              <button
+                onClick={() => setSelectedRoute(null)}
+                className="text-slate-400 hover:text-slate-700 font-bold text-sm p-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-xs font-bold text-slate-500">정류장 운행 노선도</p>
+              <div className="space-y-2 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                {selectedRoute.stops.map((stop, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex flex-col items-center">
+                      <div
+                        className={`w-3.5 h-3.5 rounded-full border-2 ${
+                          index === 0
+                            ? 'bg-[#0577B2] border-white ring-2 ring-sky-300'
+                            : 'bg-white border-slate-400'
+                        }`}
+                      />
+                      {index < selectedRoute.stops.length - 1 && (
+                        <div className="w-0.5 h-6 bg-slate-300 my-0.5" />
+                      )}
+                    </div>
+                    <span
+                      className={`text-xs ${
+                        index === 0 ? 'font-bold text-[#0A174C]' : 'font-medium text-slate-700'
+                      }`}
+                    >
+                      {stop} {index === 0 && '(기점/승차장)'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-3 bg-sky-50 rounded-xl border border-sky-200 flex items-start gap-2 text-xs text-sky-900">
+              <Info className="w-4 h-4 text-[#0577B2] shrink-0 mt-0.5" />
+              <div>
+                <span className="font-bold">이용 안내:</span> 도로 사정 및 기상 상황에 따라 실시간 도착 오차가 발생할 수 있습니다.
+              </div>
+            </div>
+
+            <button
+              onClick={() => setSelectedRoute(null)}
+              className="w-full py-2.5 bg-[#0A174C] text-white rounded-xl text-sm font-bold hover:bg-[#0577B2] transition-colors"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

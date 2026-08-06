@@ -1,0 +1,6 @@
+{
+  "name": "명지대 실시간 개인비서",
+  "description": "명지대학교 학생들을 위한 실시간 버스 정보, 주변 맛집 핀 맵, 강의 일정 캘린더, D-Day 과제 관리, 밥 매칭, 익명 커뮤니티 및 쪽지 서비스",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
