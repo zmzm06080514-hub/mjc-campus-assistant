@@ -39,6 +39,19 @@
 - Tailwind CSS를 이용한 반응형 UI 퍼블리싱
 - TypeScript 타입 설계
 
+## npm으로 설치한 패키지
+
+- react, react-dom: 화면 UI 렌더링
+- vite, @vitejs/plugin-react: 개발 서버 및 빌드 도구
+- typescript: 타입 체크
+- tailwindcss, @tailwindcss/vite, autoprefixer: 스타일링
+- lucide-react: 아이콘
+- firebase: 실시간 채팅(Firestore, Authentication)
+- cheerio: 공지사항 크롤러의 HTML 파싱
+- tsx: 크롤러 스크립트 실행
+- dotenv: 환경변수 로드
+- @types/node: Node.js 타입 정의
+
 ## 사용한 API 및 외부 서비스
 
 ### Firebase (Firestore, Authentication)
@@ -55,7 +68,7 @@
 공식 API가 아니라 학교 홈페이지(mjc.ac.kr) 공지사항 게시판을 직접 파싱하는 자체 크롤러다. GitHub Actions로 매일 한국시간 오전 9시에 자동 실행되어 새 공지를 앱에 반영한다.
 
 ### 프로젝트에 포함되어 있지만 실제로 사용하지 않는 것
-@google/genai(Gemini API), motion은 AI Studio 템플릿 생성 시 기본 포함된 의존성으로, 실제 코드에서는 사용하지 않는다.
+@google/genai(Gemini API), motion, express는 AI Studio 템플릿 생성 시 기본 포함된 의존성으로, 실제 코드에서는 사용하지 않는다.
 
 ## 로컬 실행 방법
 
