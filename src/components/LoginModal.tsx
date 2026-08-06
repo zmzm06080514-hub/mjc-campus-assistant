@@ -15,11 +15,16 @@ const ERROR_MESSAGES: Record<string, string> = {
   'auth/invalid-credential': '이메일 또는 비밀번호가 올바르지 않습니다.',
   'auth/email-already-in-use': '이미 가입된 이메일입니다.',
   'auth/weak-password': '비밀번호는 6자 이상이어야 합니다.',
+  'auth/operation-not-allowed': '이메일/비밀번호 로그인이 비활성화되어 있습니다. Firebase 콘솔 > Authentication > Sign-in method에서 활성화하세요.',
+  'auth/too-many-requests': '로그인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요.',
 };
 
 function toKoreanMessage(err: unknown): string {
   if (err instanceof FirebaseError) {
     return ERROR_MESSAGES[err.code] ?? '알 수 없는 오류가 발생했습니다.';
+  }
+  if (err instanceof Error) {
+    return err.message;
   }
   return '알 수 없는 오류가 발생했습니다.';
 }
@@ -61,6 +66,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin, onSignup, onClo
             ✕
           </button>
         </div>
+
+        <p className="text-[10px] text-slate-400 leading-relaxed">
+          관리자 전용입니다. 로그인/회원가입 시 기존 채팅 닉네임과 쪽지함이 초기화됩니다.
+        </p>
 
         <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-xl text-xs font-bold">
           <button

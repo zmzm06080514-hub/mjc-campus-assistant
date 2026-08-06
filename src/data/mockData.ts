@@ -239,8 +239,8 @@ export const INITIAL_COMMUNITY_POSTS: CommunityPost[] = [
     id: 'post_1',
     campus: 'seoul',
     tab: 'notice',
-    title: '📢 [공지] 2026학년도 2학기 명지전문대 셔틀버스 운행 시간표 안내',
-    content: '학우 여러분 안녕하세요! 학생복지처입니다. 개강을 맞아 증산역/신촌역 셔틀버스 노선 운행 시간이 조정되었으니 참고하시길 바랍니다.',
+    title: '📢 [공지] 2026학년도 2학기 중앙도서관 연장 개관 안내',
+    content: '학우 여러분 안녕하세요! 학생복지처입니다. 개강을 맞아 중앙도서관 열람실 운영 시간이 연장되오니 참고하시길 바랍니다.',
     images: [
       'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80'
@@ -260,7 +260,7 @@ export const INITIAL_COMMUNITY_POSTS: CommunityPost[] = [
         authorId: 'usr_05',
         authorName: '익명1',
         isAnonymous: true,
-        content: '증산역 막차 시간 10분 늘어나서 정말 다행이네요!',
+        content: '자정까지 연장돼서 시험기간에 정말 다행이네요!',
         createdAt: '45분 전',
         reportsCount: 0
       }
