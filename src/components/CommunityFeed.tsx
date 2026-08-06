@@ -323,17 +323,25 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({
                 {/* Action Bar */}
                 <div className="p-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600">
                   <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => handleToggleLike(post.id)}
-                      className={`flex items-center gap-1.5 transition-transform active:scale-125 ${
-                        post.isLiked ? 'text-rose-500' : 'hover:text-rose-500'
-                      }`}
-                    >
-                      <Heart
-                        className={`w-4 h-4 ${post.isLiked ? 'fill-rose-500 stroke-rose-500' : ''}`}
-                      />
-                      <span>좋아요 {post.likesCount}</span>
-                    </button>
+                    {post.isNotice ? (
+                      // 공지사항은 좋아요를 누를 수 없다 (공식 공지에 대한 감정표현 방지).
+                      <span className="flex items-center gap-1.5 text-slate-400">
+                        <Heart className="w-4 h-4" />
+                        <span>좋아요 {post.likesCount}</span>
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handleToggleLike(post.id)}
+                        className={`flex items-center gap-1.5 transition-transform active:scale-125 ${
+                          post.isLiked ? 'text-rose-500' : 'hover:text-rose-500'
+                        }`}
+                      >
+                        <Heart
+                          className={`w-4 h-4 ${post.isLiked ? 'fill-rose-500 stroke-rose-500' : ''}`}
+                        />
+                        <span>좋아요 {post.likesCount}</span>
+                      </button>
+                    )}
 
                     <span className="flex items-center gap-1.5 text-slate-500">
                       <MessageCircle className="w-4 h-4" />
