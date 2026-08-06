@@ -24,6 +24,13 @@ export interface BusRoute {
   crowdedness: '여유' | '보통' | '혼잡';
   operatingHours: string;
   stops: string[];
+  // 서울시 버스도착정보 API로 실시간 도착정보를 조회할 수 있는 노선만 채워둔다.
+  // (학교 자체 셔틀버스처럼 공공 API에 없는 노선은 undefined로 두고 시뮬레이션 값을 그대로 쓴다.)
+  seoulBusStop?: {
+    stId: string; // 정류소 고유 ID
+    busRouteId: string; // 노선 ID
+    ord: number; // 정류소 순번
+  };
 }
 
 export interface FoodSpot {

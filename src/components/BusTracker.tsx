@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BusRoute, CampusType } from '../types';
-import { Bus, RefreshCw, Clock, MapPin, AlertCircle, Info, ChevronRight, Sparkles } from 'lucide-react';
+import { Bus, RefreshCw, Clock, MapPin, AlertCircle, Info, ChevronRight, Sparkles, Radio } from 'lucide-react';
+import { fetchLiveBusArrival, LiveBusArrival } from '../data/liveBus';
 
 interface BusTrackerProps {
   campus: CampusType;
@@ -13,15 +14,42 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
   const [selectedRoute, setSelectedRoute] = useState<BusRoute | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(45);
+  // 서울시 버스도착정보 API로 실제 조회에 성공한 노선만 여기 채워진다. (id -> 실시간 도착정보)
+  const [liveArrivals, setLiveArrivals] = useState<Record<string, LiveBusArrival>>({});
+
+  // seoulBusStop이 설정된 노선만 실시간 API를 조회한다. 실패/미설정 노선은
+  // 기존 시뮬레이션 값(route.nextArrivalMinutes)을 그대로 보여준다.
+  const refreshLiveArrivals = useCallback(async () => {
+    const trackedRoutes = busRoutes.filter((r) => r.seoulBusStop);
+    if (trackedRoutes.length === 0) return;
+
+    const results = await Promise.all(
+      trackedRoutes.map(async (r) => {
+        const live = await fetchLiveBusArrival(r.seoulBusStop!);
+        return [r.id, live] as const;
+      })
+    );
+
+    setLiveArrivals((prev) => {
+      const next = { ...prev };
+      for (const [id, live] of results) {
+        if (live) next[id] = live;
+      }
+      return next;
+    });
+  }, [busRoutes]);
 
   // Live countdown effect
   useEffect(() => {
     const timer = setInterval(() => {
       setSecondsRemaining((prev) => {
         if (prev <= 1) {
-          // Trigger route refresh
+          // 실시간 API가 연동된 노선을 우선 갱신하고,
+          void refreshLiveArrivals();
+          // 그 외(셔틀버스 등 공공API가 없는 노선)는 기존처럼 시뮬레이션한다.
           setBusRoutes((prevRoutes) =>
             prevRoutes.map((r) => {
+              if (r.seoulBusStop) return r;
               const newArrival = Math.max(1, (r.nextArrivalMinutes + Math.floor(Math.random() * 3) - 1));
               return { ...r, nextArrivalMinutes: newArrival };
             })
@@ -32,7 +60,13 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [setBusRoutes]);
+  }, [setBusRoutes, refreshLiveArrivals]);
+
+  // 최초 진입 시에도 한 번 실시간 데이터를 가져온다.
+  useEffect(() => {
+    void refreshLiveArrivals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const filteredRoutes = busRoutes.filter((r) => {
     if (r.campus !== campus) return false;
@@ -43,13 +77,17 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
 
   const handleManualRefresh = () => {
     setIsRefreshing(true);
+    void refreshLiveArrivals();
     setTimeout(() => {
       setBusRoutes((prev) =>
-        prev.map((r) => ({
-          ...r,
-          nextArrivalMinutes: Math.floor(Math.random() * 8) + 1,
-          stopsAway: Math.floor(Math.random() * 3) + 1,
-        }))
+        prev.map((r) => {
+          if (r.seoulBusStop) return r; // 실시간 노선은 refreshLiveArrivals가 담당
+          return {
+            ...r,
+            nextArrivalMinutes: Math.floor(Math.random() * 8) + 1,
+            stopsAway: Math.floor(Math.random() * 3) + 1,
+          };
+        })
       );
       setSecondsRemaining(60);
       setIsRefreshing(false);
@@ -135,6 +173,7 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
         ) : (
           filteredRoutes.map((route) => {
             const isShuttle = route.routeType === 'shuttle';
+            const live = route.seoulBusStop ? liveArrivals[route.id] : undefined;
             const crowdednessColor =
               route.crowdedness === '여유'
                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
@@ -175,17 +214,42 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
                 {/* Countdown Box */}
                 <div className="mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200/70 flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] text-slate-500 font-semibold block">
+                    <span className="text-[11px] text-slate-500 font-semibold flex items-center gap-1">
                       도착 예정 시간
+                      {live && (
+                        <span className="inline-flex items-center gap-0.5 text-emerald-600 font-bold">
+                          <Radio className="w-2.5 h-2.5" />
+                          실시간
+                        </span>
+                      )}
                     </span>
-                    <div className="flex items-baseline gap-1 mt-0.5">
-                      <span className="text-xl font-black text-[#0577B2]">
-                        {route.nextArrivalMinutes}분 후
-                      </span>
-                      <span className="text-xs font-semibold text-slate-600">
-                        ({route.stopsAway}정거장 전)
-                      </span>
-                    </div>
+                    {live ? (
+                      live.minutes !== null ? (
+                        <div className="flex items-baseline gap-1 mt-0.5">
+                          <span className="text-xl font-black text-[#0577B2]">
+                            {live.minutes}분 후
+                          </span>
+                          {live.stopsAway !== null && (
+                            <span className="text-xs font-semibold text-slate-600">
+                              ({live.stopsAway}번째 전)
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-sm font-black text-[#0577B2] mt-0.5 block">
+                          {live.message}
+                        </span>
+                      )
+                    ) : (
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="text-xl font-black text-[#0577B2]">
+                          {route.nextArrivalMinutes}분 후
+                        </span>
+                        <span className="text-xs font-semibold text-slate-600">
+                          ({route.stopsAway}정거장 전)
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="text-right">
