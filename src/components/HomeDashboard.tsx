@@ -15,7 +15,6 @@ import {
   Users,
   UtensilsCrossed,
   MessageSquare,
-  Sparkles,
   ArrowRight,
   Clock,
   MapPin,
@@ -35,7 +34,6 @@ interface HomeDashboardProps {
   posts: CommunityPost[];
   foodSpots: FoodSpot[];
   onNavigate: (tab: any) => void;
-  onCreatePost: () => void;
   onShowToast: (msg: string) => void;
 }
 
@@ -48,7 +46,6 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   posts,
   foodSpots,
   onNavigate,
-  onCreatePost,
   onShowToast,
 }) => {
   const [activeFeedFilter, setActiveFeedFilter] = useState<'meal' | 'class' | 'notice' | 'event'>('meal');
@@ -92,33 +89,6 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* High Density Banner Header */}
-      <div className="bg-gradient-to-r from-[#0A174C] via-[#0577B2] to-[#0A174C] text-white p-5 rounded-3xl shadow-md relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div className="relative z-10 space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold text-amber-300">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>명지전문대 개인비서 2.0 (High Density)</span>
-          </div>
-          <h1 className="text-xl sm:text-2xl font-black tracking-tight leading-snug">
-            명지전문대 캠퍼스 실시간 하이데시티 대시보드
-          </h1>
-          <p className="text-xs text-sky-100/90 max-w-xl">
-            실시간 버스 도착, 캘린더 강의 일정, D-Day 과제, 주변 맛집 핀, 밥 매칭 및 익명 커뮤니티
-          </p>
-        </div>
-
-        <div className="relative z-10 flex items-center gap-2 shrink-0">
-          <button
-            onClick={onCreatePost}
-            className="px-4 py-2 bg-white text-[#0A174C] font-extrabold text-xs rounded-xl shadow-xs hover:bg-sky-50 transition-all"
-          >
-            + 새 글 작성
-          </button>
-        </div>
-
-        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full blur-xl pointer-events-none" />
-      </div>
-
       {/* 3-Column High Density Layout Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Left Column: Academic & Tasks (3 Cols on lg) */}
@@ -437,17 +407,6 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Admin Message Card */}
-          <div className="p-4 rounded-2xl bg-slate-900 text-white relative overflow-hidden shadow-xs">
-            <div className="relative z-10 space-y-1">
-              <p className="text-[10px] font-extrabold text-sky-400 tracking-wider">ADMIN MESSAGE</p>
-              <p className="text-xs leading-relaxed text-slate-200 font-medium">
-                서버 점검 및 수강신청 대비 시스템 최적화가 진행 중입니다.
-              </p>
-            </div>
-            <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-sky-500/20 blur-2xl rounded-full" />
           </div>
         </section>
       </div>

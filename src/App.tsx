@@ -196,10 +196,6 @@ export default function App() {
             posts={posts}
             foodSpots={foodSpots}
             onNavigate={(t) => setActiveTab(t)}
-            onCreatePost={() => {
-              setActiveTab('community');
-              setIsCreatePostModalOpen(true);
-            }}
             onShowToast={showToast}
           />
         )}
