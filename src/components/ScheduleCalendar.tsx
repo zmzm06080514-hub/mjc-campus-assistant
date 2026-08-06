@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { ClassItem } from '../types';
 import { Calendar, Plus, Clock, MapPin, User, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 
+// 월간 캘린더는 2026년 8월 고정 화면이므로, 실제 오늘이 그 안에 있을 때만 "오늘"을 표시한다.
+const today = new Date();
+const TODAY_DATE_IN_AUGUST_2026 =
+  today.getFullYear() === 2026 && today.getMonth() === 7 ? today.getDate() : -1;
+
 interface ScheduleCalendarProps {
   classes: ClassItem[];
   setClasses: React.Dispatch<React.SetStateAction<ClassItem[]>>;
@@ -211,12 +216,13 @@ export const ScheduleCalendar: React.FC<ScheduleCalendarProps> = ({
               const dayIndex = (dayNum + 5) % 7; // offset for 2026 August start
               const dayName = ['일', '월', '화', '수', '목', '금', '토'][dayIndex];
               const dayClasses = classes.filter((c) => c.dayOfWeek === dayName);
+              const isToday = dayNum === TODAY_DATE_IN_AUGUST_2026;
 
               return (
                 <div
                   key={dayNum}
                   className={`min-h-[75px] p-1.5 rounded-xl border transition-all ${
-                    dayNum === 6
+                    isToday
                       ? 'bg-sky-50/80 border-[#0577B2] font-black'
                       : 'bg-slate-50/50 border-slate-200/70 hover:bg-white'
                   }`}
@@ -230,7 +236,7 @@ export const ScheduleCalendar: React.FC<ScheduleCalendarProps> = ({
                         : 'text-slate-800'
                     }`}
                   >
-                    {dayNum} {dayNum === 6 && <span className="text-[9px] font-bold text-[#0577B2]">(오늘)</span>}
+                    {dayNum} {isToday && <span className="text-[9px] font-bold text-[#0577B2]">(오늘)</span>}
                   </span>
 
                   <div className="mt-1 space-y-1">

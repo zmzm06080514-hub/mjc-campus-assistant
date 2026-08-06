@@ -42,19 +42,15 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0A174C] to-[#0577B2] flex items-center justify-center text-white font-bold text-lg shadow-md shadow-sky-900/10 border border-white/20">
-              M
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="MJC Mate"
+              className="w-9 h-9 rounded-xl object-cover shadow-md shadow-sky-900/10 border border-white/20"
+            />
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-slate-900 text-base tracking-tight leading-none">
-                  명지전문대 <span className="text-[#0577B2]">개인비서</span>
-                </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold bg-[#0577B2]/10 text-[#0577B2]">
-                  LIVE
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500 font-medium">MJC Campus Assistant</p>
+              <span className="font-extrabold text-slate-900 text-base tracking-tight leading-none">
+                MJC <span className="text-[#0577B2]">Mate</span>
+              </span>
             </div>
           </div>
         </div>
@@ -92,10 +88,10 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={onOpenLogin}
               className="px-2.5 py-1.5 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-semibold hover:bg-slate-100 transition-all flex items-center gap-1"
-              title="관리자 로그인"
+              title="로그인"
             >
               <LogIn className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">관리자 로그인</span>
+              <span className="hidden sm:inline">로그인</span>
             </button>
           )}
 

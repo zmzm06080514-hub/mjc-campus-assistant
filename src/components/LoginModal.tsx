@@ -60,7 +60,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin, onSignup, onClo
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <h3 className="font-extrabold text-slate-900 text-base flex items-center gap-2">
             <Lock className="w-5 h-5 text-[#0577B2]" />
-            <span>관리자 로그인</span>
+            <span>로그인</span>
           </h3>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-700 font-bold text-sm">
             ✕
@@ -68,7 +68,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin, onSignup, onClo
         </div>
 
         <p className="text-[10px] text-slate-400 leading-relaxed">
-          관리자 전용입니다. 로그인/회원가입 시 기존 채팅 닉네임과 쪽지함이 초기화됩니다.
+          로그인/회원가입 시 기존 채팅 닉네임과 쪽지함이 초기화됩니다.
         </p>
 
         <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-xl text-xs font-bold">
