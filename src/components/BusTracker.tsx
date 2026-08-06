@@ -70,7 +70,6 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
 
   const filteredRoutes = busRoutes.filter((r) => {
     if (r.campus !== campus) return false;
-    if (filterType === 'shuttle') return r.routeType === 'shuttle';
     if (filterType === 'city') return r.routeType === 'city' || r.routeType === 'express';
     return true;
   });
@@ -140,16 +139,6 @@ export const BusTracker: React.FC<BusTrackerProps> = ({ campus, busRoutes, setBu
           }`}
         >
           전체 노선 ({busRoutes.filter((r) => r.campus === campus).length})
-        </button>
-        <button
-          onClick={() => setFilterType('shuttle')}
-          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
-            filterType === 'shuttle'
-              ? 'bg-[#0577B2] text-white shadow-xs'
-              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-          }`}
-        >
-          명지전문대 셔틀버스
         </button>
         <button
           onClick={() => setFilterType('city')}

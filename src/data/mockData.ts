@@ -11,18 +11,6 @@ export const CURRENT_USER: UserProfile = {
 
 export const INITIAL_BUS_ROUTES: BusRoute[] = [
   {
-    id: 'bus_seoul_shuttle_2',
-    campus: 'seoul',
-    busNumber: '명지전문대 직행 셔틀',
-    routeType: 'shuttle',
-    destination: '신촌역(2호선) ↔ 명지전문대 본관',
-    nextArrivalMinutes: 7,
-    stopsAway: 3,
-    crowdedness: '여유',
-    operatingHours: '08:20 - 17:50 (15분 간격)',
-    stops: ['명지전문대 본관', '모래내시장', '신촌역 1번출구']
-  },
-  {
     id: 'bus_seoul_7019',
     campus: 'seoul',
     busNumber: '7019번 시내버스',
