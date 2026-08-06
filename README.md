@@ -28,6 +28,17 @@
 - Node.js, cheerio (공지사항 크롤러)
 - GitHub Actions (크롤러 자동 실행 스케줄러)
 
+## 사용한 스킬
+
+- Git, GitHub을 이용한 버전관리 및 협업
+- GitHub Actions로 크롤러 정기 실행 자동화 (cron 스케줄링)
+- Firebase Firestore 데이터 모델링 및 보안 규칙(firestore.rules) 작성
+- 실시간 데이터 구독(Firestore onSnapshot)을 이용한 채팅 기능 구현
+- HTML 파싱 기반 웹 크롤링 (cheerio)
+- REST API 연동 (공공데이터포털, 카카오맵)
+- Tailwind CSS를 이용한 반응형 UI 퍼블리싱
+- TypeScript 타입 설계
+
 ## 사용한 API 및 외부 서비스
 
 ### Firebase (Firestore, Authentication)
