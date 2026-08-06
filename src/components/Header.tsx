@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserRole, UserProfile } from '../types';
-import { Mail, Shield, ShieldCheck, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { Mail, Menu, Shield, ShieldCheck, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 interface HeaderProps {
   userRole: UserRole;
@@ -9,6 +9,7 @@ interface HeaderProps {
   unreadNotesCount: number;
   onOpenNotes: () => void;
   onOpenAdmin: () => void;
+  onToggleSidebar: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   unreadNotesCount,
   onOpenNotes,
   onOpenAdmin,
+  onToggleSidebar,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
@@ -25,9 +27,17 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="h-1 bg-gradient-to-r from-[#0A174C] via-[#0577B2] to-[#0A174C]" />
 
       <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2">
-        {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
+          <button
+            onClick={onToggleSidebar}
+            className="p-2 -ml-1 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
+            aria-label="메뉴 열기"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+
+          {/* Logo */}
+          <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0A174C] to-[#0577B2] flex items-center justify-center text-white font-bold text-lg shadow-md shadow-sky-900/10 border border-white/20">
               M
             </div>

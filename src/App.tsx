@@ -26,7 +26,7 @@ import { useChatIdentity } from './hooks/useChatIdentity';
 import { subscribeMyChats } from './data/chat';
 
 import { Header } from './components/Header';
-import { Navigation, MainTab } from './components/Navigation';
+import { Sidebar, MainTab } from './components/Sidebar';
 import { HomeDashboard } from './components/HomeDashboard';
 import { BusTracker } from './components/BusTracker';
 import { FoodSpotMap } from './components/FoodSpotMap';
@@ -46,6 +46,7 @@ export default function App() {
   const campus: CampusType = 'seoul';
   const [userRole, setUserRole] = useState<UserRole>('user');
   const [activeTab, setActiveTab] = useState<MainTab>('home');
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   // Application Dynamic State
   const [busRoutes, setBusRoutes] = useState<BusRoute[]>(INITIAL_BUS_ROUTES);
@@ -174,10 +175,12 @@ export default function App() {
           setIsChatOpen(true);
         }}
         onOpenAdmin={() => setIsAdminPanelOpen(true)}
+        onToggleSidebar={() => setIsSidebarOpen((v) => !v)}
       />
 
-      {/* Main Navigation */}
-      <Navigation
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         pendingAssignmentsCount={pendingAssignmentsCount}
