@@ -117,18 +117,6 @@ export interface CommunityPost {
   isNotice?: boolean;
 }
 
-export interface NoteMessage {
-  id: string;
-  senderId: string;
-  senderName: string;
-  receiverId: string;
-  receiverName: string;
-  content: string;
-  sentAt: string;
-  isRead: boolean;
-  relatedPostTitle?: string;
-}
-
 export interface ContentReport {
   id: string;
   contentType: 'post' | 'comment';

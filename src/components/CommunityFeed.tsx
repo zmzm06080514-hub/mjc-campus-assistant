@@ -226,10 +226,10 @@ export const CommunityFeed: React.FC<CommunityFeedProps> = ({
                         onOpenSendNote(post.authorId, post.authorName, post.title)
                       }
                       className="px-2.5 py-1 bg-sky-50 text-[#0577B2] hover:bg-sky-100 text-[11px] font-bold rounded-lg transition-colors flex items-center gap-1"
-                      title="작성자에게 쪽지 보내기"
+                      title="작성자에게 1:1 채팅"
                     >
                       <Send className="w-3 h-3" />
-                      <span>쪽지</span>
+                      <span>1:1 채팅</span>
                     </button>
 
                     <button

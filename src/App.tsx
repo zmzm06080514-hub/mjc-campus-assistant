@@ -9,7 +9,6 @@ import {
   AssignmentItem,
   MealMatch,
   CommunityPost,
-  NoteMessage,
   ContentReport,
 } from './types';
 import {
@@ -20,10 +19,11 @@ import {
   INITIAL_ASSIGNMENTS,
   INITIAL_MEAL_MATCHES,
   INITIAL_COMMUNITY_POSTS,
-  INITIAL_NOTES,
   INITIAL_REPORTS,
 } from './data/mockData';
 import { fetchLiveNotices } from './data/liveNotices';
+import { useChatIdentity } from './hooks/useChatIdentity';
+import { subscribeMyChats } from './data/chat';
 
 import { Header } from './components/Header';
 import { Navigation, MainTab } from './components/Navigation';
@@ -35,7 +35,8 @@ import { AssignmentList } from './components/AssignmentList';
 import { MealMatching } from './components/MealMatching';
 import { CommunityFeed } from './components/CommunityFeed';
 import { PostCreateModal } from './components/PostCreateModal';
-import { NoteDrawer } from './components/NoteDrawer';
+import { ChatDrawer } from './components/ChatDrawer';
+import { NicknameModal } from './components/NicknameModal';
 import { AdminPanel } from './components/AdminPanel';
 import { Toast } from './components/Toast';
 import { AlertTriangle } from 'lucide-react';
@@ -54,8 +55,25 @@ export default function App() {
   const [assignments, setAssignments] = useState<AssignmentItem[]>(INITIAL_ASSIGNMENTS);
   const [mealMatches, setMealMatches] = useState<MealMatch[]>(INITIAL_MEAL_MATCHES);
   const [posts, setPosts] = useState<CommunityPost[]>(INITIAL_COMMUNITY_POSTS);
-  const [notes, setNotes] = useState<NoteMessage[]>(INITIAL_NOTES);
   const [reports, setReports] = useState<ContentReport[]>(INITIAL_REPORTS);
+
+  // 실시간 채팅 (Firebase 익명 로그인 + 닉네임)
+  const chatIdentity = useChatIdentity();
+  const [myChatCount, setMyChatCount] = useState<{ total: number; withActivity: number }>({
+    total: 0,
+    withActivity: 0,
+  });
+  useEffect(() => {
+    if (!chatIdentity.uid) return;
+    return subscribeMyChats(chatIdentity.uid, (chats) => {
+      // 참고: 정확한 "읽음" 추적은 하지 않는다 (MVP 단순화).
+      // 상대가 마지막으로 보낸 대화가 있으면 "확인할 게 있다"는 정도의 표시만 한다.
+      const withActivity = chats.filter(
+        (c) => c.lastSenderUid && c.lastSenderUid !== chatIdentity.uid
+      ).length;
+      setMyChatCount({ total: chats.length, withActivity });
+    });
+  }, [chatIdentity.uid]);
 
   // GitHub Actions가 매일 크롤링해 둔 실제 명지전문대 공지사항을 불러와
   // 목업 게시글 위에 최신순으로 얹는다 (이미 들어와 있으면 건너뜀).
@@ -72,14 +90,13 @@ export default function App() {
   }, []);
 
   // Modal / Drawer & Toast Control
-  const [isNoteDrawerOpen, setIsNoteDrawerOpen] = useState<boolean>(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  const [dmTarget, setDmTarget] = useState<{ uid: string; name: string } | null>(null);
+  const [mealChatTarget, setMealChatTarget] = useState<{ mealMatchId: string; title: string } | null>(
+    null
+  );
   const [isAdminPanelOpen, setIsAdminPanelOpen] = useState<boolean>(false);
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState<boolean>(false);
-  const [sendNoteTarget, setSendNoteTarget] = useState<{
-    receiverId: string;
-    receiverName: string;
-    relatedTitle?: string;
-  } | null>(null);
 
   // Report Popup State
   const [reportTarget, setReportTarget] = useState<{
@@ -96,22 +113,21 @@ export default function App() {
     setToastMessage(msg);
   };
 
-  const unreadNotesCount = notes.filter(
-    (n) => n.receiverId === CURRENT_USER.id && !n.isRead
-  ).length;
-
   const pendingAssignmentsCount = assignments.filter((a) => !a.completed).length;
   const openMealCount = mealMatches.filter(
     (m) => m.campus === campus && m.status === 'open'
   ).length;
 
-  const handleOpenSendNote = (
-    receiverId: string,
-    receiverName: string,
-    relatedTitle?: string
-  ) => {
-    setSendNoteTarget({ receiverId, receiverName, relatedTitle });
-    setIsNoteDrawerOpen(true);
+  const handleOpenDm = (receiverId: string, receiverName: string) => {
+    setDmTarget({ uid: receiverId, name: receiverName });
+    setMealChatTarget(null);
+    setIsChatOpen(true);
+  };
+
+  const handleOpenMealChat = (mealMatchId: string, title: string) => {
+    setMealChatTarget({ mealMatchId, title });
+    setDmTarget(null);
+    setIsChatOpen(true);
   };
 
   const handleTriggerReport = (
@@ -152,10 +168,11 @@ export default function App() {
         userRole={userRole}
         setUserRole={setUserRole}
         currentUser={CURRENT_USER}
-        unreadNotesCount={unreadNotesCount}
+        unreadNotesCount={myChatCount.withActivity}
         onOpenNotes={() => {
-          setSendNoteTarget(null);
-          setIsNoteDrawerOpen(true);
+          setDmTarget(null);
+          setMealChatTarget(null);
+          setIsChatOpen(true);
         }}
         onOpenAdmin={() => setIsAdminPanelOpen(true)}
         isGlobalAnonymous={isGlobalAnonymous}
@@ -217,7 +234,8 @@ export default function App() {
             mealMatches={mealMatches}
             setMealMatches={setMealMatches}
             currentUser={CURRENT_USER}
-            onOpenSendNote={handleOpenSendNote}
+            onOpenSendNote={handleOpenDm}
+            onOpenMealChat={handleOpenMealChat}
             onShowToast={showToast}
             isGlobalAnonymous={isGlobalAnonymous}
           />
@@ -232,7 +250,7 @@ export default function App() {
             userRole={userRole}
             isGlobalAnonymous={isGlobalAnonymous}
             onOpenCreateModal={() => setIsCreatePostModalOpen(true)}
-            onOpenSendNote={handleOpenSendNote}
+            onOpenSendNote={handleOpenDm}
             onReportContent={handleTriggerReport}
             onShowToast={showToast}
           />
@@ -252,15 +270,22 @@ export default function App() {
         />
       )}
 
-      {isNoteDrawerOpen && (
-        <NoteDrawer
-          currentUser={CURRENT_USER}
-          notes={notes}
-          setNotes={setNotes}
-          initialSendTarget={sendNoteTarget}
-          onClose={() => setIsNoteDrawerOpen(false)}
-          onShowToast={showToast}
+      {isChatOpen && chatIdentity.uid && chatIdentity.nickname && (
+        <ChatDrawer
+          uid={chatIdentity.uid}
+          myNickname={chatIdentity.nickname}
+          initialDmTarget={dmTarget}
+          initialMealChat={mealChatTarget}
+          onClose={() => {
+            setIsChatOpen(false);
+            setDmTarget(null);
+            setMealChatTarget(null);
+          }}
         />
+      )}
+
+      {isChatOpen && chatIdentity.ready && !chatIdentity.nickname && (
+        <NicknameModal onSubmit={(name) => chatIdentity.setNickname(name)} />
       )}
 
       {isAdminPanelOpen && (

@@ -8,6 +8,7 @@ interface MealMatchingProps {
   setMealMatches: React.Dispatch<React.SetStateAction<MealMatch[]>>;
   currentUser: UserProfile;
   onOpenSendNote: (receiverId: string, receiverName: string, relatedTitle?: string) => void;
+  onOpenMealChat: (mealMatchId: string, title: string) => void;
   onShowToast: (msg: string) => void;
   isGlobalAnonymous: boolean;
 }
@@ -18,10 +19,11 @@ export const MealMatching: React.FC<MealMatchingProps> = ({
   setMealMatches,
   currentUser,
   onOpenSendNote,
+  onOpenMealChat,
   onShowToast,
   isGlobalAnonymous,
 }) => {
-  const [filterType, setFilterType] = useState<string>('all');
+  const [filterType, setFilterType] = useState<string>('전체');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // New Meal Form
@@ -216,14 +218,23 @@ export const MealMatching: React.FC<MealMatchingProps> = ({
 
                     <div className="flex items-center gap-1.5">
                       <button
+                        onClick={() => onOpenMealChat(match.id, match.title)}
+                        className="px-2.5 py-1.5 bg-sky-50 hover:bg-sky-100 text-[#0577B2] font-bold rounded-lg transition-colors flex items-center gap-1"
+                        title="이 밥약속 그룹채팅 참여"
+                      >
+                        <MessageSquare className="w-3 h-3" />
+                        <span>그룹채팅</span>
+                      </button>
+
+                      <button
                         onClick={() =>
                           onOpenSendNote(match.authorId, match.authorName, match.title)
                         }
                         className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg transition-colors flex items-center gap-1"
-                        title="작성자에게 쪽지 보내기"
+                        title="작성자에게 1:1 채팅"
                       >
                         <Send className="w-3 h-3 text-[#0577B2]" />
-                        <span>쪽지</span>
+                        <span>1:1</span>
                       </button>
 
                       <button

@@ -1,4 +1,4 @@
-import { BusRoute, FoodSpot, ClassItem, AssignmentItem, MealMatch, CommunityPost, NoteMessage, ContentReport, UserProfile } from '../types';
+import { BusRoute, FoodSpot, ClassItem, AssignmentItem, MealMatch, CommunityPost, ContentReport, UserProfile } from '../types';
 
 export const CURRENT_USER: UserProfile = {
   id: 'usr_mju_01',
@@ -358,31 +358,6 @@ export const INITIAL_COMMUNITY_POSTS: CommunityPost[] = [
     isLiked: false,
     reportsCount: 0,
     comments: []
-  }
-];
-
-export const INITIAL_NOTES: NoteMessage[] = [
-  {
-    id: 'note_1',
-    senderId: 'usr_02',
-    senderName: '백호99',
-    receiverId: 'usr_mju_01',
-    receiverName: '명지백호24',
-    content: '안녕하세요! 학식 밥매칭글 보고 쪽지 드립니다. 12시 30분 학생식당 2층 계단 앞에서 뵈어요!',
-    sentAt: '오늘 12:15',
-    isRead: false,
-    relatedPostTitle: '오늘 점심 학식 같이 드실 분!!'
-  },
-  {
-    id: 'note_2',
-    senderId: 'admin_mju',
-    senderName: '관리자',
-    receiverId: 'usr_mju_01',
-    receiverName: '명지백호24',
-    content: '작성하신 주변 맛집 후기 게시글이 우수 포스트로 선정되어 학생회 포인트 500p가 적립되었습니다.',
-    sentAt: '어제 16:40',
-    isRead: true,
-    relatedPostTitle: '학교 앞 새로 생긴 돈까스집 후기'
   }
 ];
 

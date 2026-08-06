@@ -56,6 +56,19 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   const topBus = campusBuses[0] || busRoutes[0];
   const secondBus = campusBuses[1] || busRoutes[1];
 
+  // 미니 캘린더: 하드코딩된 날짜가 아니라 실제 오늘을 기준으로 2주(14일)를 계산한다.
+  // 강의가 있는 요일에는 점을 찍고, 날짜를 누르면 강의일정 탭으로 이동한다.
+  const today = new Date();
+  const WEEKDAY_INDEX: Record<string, number> = { 월: 1, 화: 2, 수: 3, 목: 4, 금: 5, 토: 6 };
+  const classWeekdays = new Set(classes.map((c) => WEEKDAY_INDEX[c.dayOfWeek]));
+  const startOfThisWeek = new Date(today);
+  startOfThisWeek.setDate(today.getDate() - today.getDay());
+  const miniCalendarDays = Array.from({ length: 14 }, (_, i) => {
+    const d = new Date(startOfThisWeek);
+    d.setDate(startOfThisWeek.getDate() + i);
+    return d;
+  });
+
   const pendingAssignments = assignments.filter((a) => !a.completed);
   const campusPosts = posts.filter((p) => p.campus === campus);
   const topFoodSpots = foodSpots.filter((f) => f.campus === campus);
@@ -129,15 +142,29 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
               </div>
               <div className="grid grid-cols-7 gap-1 text-center">
-                <div className="h-6 flex items-center justify-center text-xs text-slate-300">26</div>
-                <div className="h-6 flex items-center justify-center text-xs text-slate-300">27</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold relative">1 <span className="absolute bottom-0.5 w-1 h-1 bg-[#0577B2] rounded-full"></span></div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold">2</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold bg-[#0A174C] text-white rounded-md shadow-xs">3</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold">4</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold">5</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold">6</div>
-                <div className="h-6 flex items-center justify-center text-xs font-semibold relative">7 <span className="absolute bottom-0.5 w-1 h-1 bg-[#0577B2] rounded-full"></span></div>
+                {miniCalendarDays.map((d, i) => {
+                  const isToday = d.toDateString() === today.toDateString();
+                  const isCurrentMonth = d.getMonth() === today.getMonth();
+                  const hasClass = classWeekdays.has(d.getDay());
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => onNavigate('schedule')}
+                      className={`h-6 flex items-center justify-center text-xs font-semibold rounded-md relative transition-colors ${
+                        isToday
+                          ? 'bg-[#0A174C] text-white shadow-xs'
+                          : isCurrentMonth
+                          ? 'text-slate-900 hover:bg-slate-200'
+                          : 'text-slate-300 hover:bg-slate-200'
+                      }`}
+                    >
+                      {d.getDate()}
+                      {hasClass && !isToday && (
+                        <span className="absolute bottom-0.5 w-1 h-1 bg-[#0577B2] rounded-full"></span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Lecture list items */}
