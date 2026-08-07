@@ -6,7 +6,8 @@ import {
   signOut,
   User,
 } from 'firebase/auth';
-import { auth, isFirebaseConfigured } from '../firebase';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { auth, db, isFirebaseConfigured } from '../firebase';
 
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL as string | undefined;
 
@@ -48,7 +49,14 @@ export function useAdminAuth(): AdminAuthState {
 
   const signup = async (email: string, password: string) => {
     if (!auth) throw new Error('Firebase가 설정되지 않았습니다.');
-    await createUserWithEmailAndPassword(auth, email, password);
+    const { user: newUser } = await createUserWithEmailAndPassword(auth, email, password);
+    if (db) {
+      await setDoc(
+        doc(db, 'users', newUser.uid),
+        { email, createdAt: serverTimestamp() },
+        { merge: true }
+      );
+    }
   };
 
   const logout = async () => {
