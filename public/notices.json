@@ -1,5 +1,27 @@
 [
   {
+    "id": "BD0050390071",
+    "title": "2026년 연구실 정기점검 및 정밀안전진단 결과 공표",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390071",
+    "author": "구매시설팀",
+    "date": "2026-10-06",
+    "views": 13,
+    "images": [],
+    "crawledAt": "2026-10-06T04:21:38.014Z"
+  },
+  {
+    "id": "BD0050390069",
+    "title": "[혁신] 2026학년도 2학기 Learning C.R.E.W(콘텐츠) 시행 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390069",
+    "author": "교수학습팀",
+    "date": "2026-10-06",
+    "views": 10,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000277/20261006092221665_NQ4OSZOA.jpg"
+    ],
+    "crawledAt": "2026-10-06T04:21:40.356Z"
+  },
+  {
     "id": "BD0050390068",
     "title": "[안내] AI:ON 2026 경진대회 『아이디어를 켜고, 가능성을 실행하라』",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390068",
@@ -573,27 +595,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000264/20260609114110567_G40B2Q2A.png"
     ],
     "crawledAt": "2026-08-06T07:00:07.408Z"
-  },
-  {
-    "id": "BD0050390017",
-    "title": "[혁신]2026학년도 1학기 「학생 자원봉사활동 체험수기」 공모전 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390017",
-    "author": "선교지원팀",
-    "date": "2026-06-01",
-    "views": 502,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:07.771Z"
-  },
-  {
-    "id": "BD0050390016",
-    "title": "[혁신]2026학년도 전문대학 혁신지원사업 숏폼(Short-form) 영상 콘텐츠 공모전 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390016",
-    "author": "대학혁신본부",
-    "date": "2026-06-01",
-    "views": 224,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000253/20260326141407210_1N4NTKSK.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:08.118Z"
   }
 ]
