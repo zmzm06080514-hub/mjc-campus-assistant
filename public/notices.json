@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390072",
+    "title": "[안내] 일본경제대학교 후쿠오카 캠퍼스 오픈캠퍼스 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390072",
+    "author": "글로벌교육팀",
+    "date": "2026-10-07",
+    "views": 29,
+    "images": [],
+    "crawledAt": "2026-10-07T03:47:48.118Z"
+  },
+  {
     "id": "BD0050390071",
     "title": "2026년 연구실 정기점검 및 정밀안전진단 결과 공표",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390071",
@@ -583,17 +593,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000264/20260609171312431_1E21747Y.png"
     ],
     "crawledAt": "2026-08-06T07:00:07.078Z"
-  },
-  {
-    "id": "BD0050390019",
-    "title": "2026-2학기 농림축산식품부 청년창업농장학생을 선발 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390019",
-    "author": "학생복지팀",
-    "date": "2026-06-09",
-    "views": 180,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000264/20260609114110567_G40B2Q2A.png"
-    ],
-    "crawledAt": "2026-08-06T07:00:07.408Z"
   }
 ]
