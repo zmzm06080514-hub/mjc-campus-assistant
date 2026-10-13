@@ -1,5 +1,17 @@
 [
   {
+    "id": "BD0050390073",
+    "title": "[혁신] 2026학년도 학습성장 아카이브 운영 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390073",
+    "author": "교수학습팀",
+    "date": "2026-10-13",
+    "views": 12,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000278/20261013133303628_HXWFOF8K.jpg"
+    ],
+    "crawledAt": "2026-10-13T05:00:13.801Z"
+  },
+  {
     "id": "BD0050390072",
     "title": "[안내] 일본경제대학교 후쿠오카 캠퍼스 오픈캠퍼스 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390072",
@@ -580,18 +592,5 @@
     "views": 386,
     "images": [],
     "crawledAt": "2026-08-06T07:00:06.790Z"
-  },
-  {
-    "id": "BD0050390021",
-    "title": "폭염중대경보 및 열대야주의보 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390021",
-    "author": "구매시설팀",
-    "date": "2026-06-09",
-    "views": 247,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000264/20260609171259965_0X90LARG.png",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000264/20260609171312431_1E21747Y.png"
-    ],
-    "crawledAt": "2026-08-06T07:00:07.078Z"
   }
 ]
