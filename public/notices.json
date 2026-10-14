@@ -1,5 +1,40 @@
 [
   {
+    "id": "BD0050390076",
+    "title": "[혁신] 2026학년도 <학습성과 글쓰기 공모전> 참여학생 모집",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390076",
+    "author": "교수학습팀",
+    "date": "2026-10-13",
+    "views": 43,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000278/20261013165354854_HG2BIAV6.png"
+    ],
+    "crawledAt": "2026-10-14T03:07:27.568Z"
+  },
+  {
+    "id": "BD0050390075",
+    "title": "[혁신] 2026학년도 <프레젠테이션 경진대회> 참여학생 모집",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390075",
+    "author": "교수학습팀",
+    "date": "2026-10-13",
+    "views": 38,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000278/20261013164837268_2N4TF71O.png",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000278/20261013164847178_TF4B2524.png"
+    ],
+    "crawledAt": "2026-10-14T03:07:29.275Z"
+  },
+  {
+    "id": "BD0050390074",
+    "title": "2026-2학기 원격강좌 중간고사 시험 일정 안내(26.10.13. 17시 기준)",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390074",
+    "author": "원격교육지원팀",
+    "date": "2026-10-13",
+    "views": 46,
+    "images": [],
+    "crawledAt": "2026-10-14T03:07:30.964Z"
+  },
+  {
     "id": "BD0050390073",
     "title": "[혁신] 2026학년도 학습성장 아카이브 운영 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390073",
@@ -556,41 +591,5 @@
       "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390027&attach_idx=BF0050227629"
     ],
     "crawledAt": "2026-08-06T07:00:05.916Z"
-  },
-  {
-    "id": "BD0050390026",
-    "title": "[혁신] 2026학년도 하계방학 학습컨설팅 실시 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390026",
-    "author": "교수학습팀",
-    "date": "2026-06-18",
-    "views": 298,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000265/20260618140704549_3BZQGGAC.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:06.168Z"
-  },
-  {
-    "id": "BD0050390025",
-    "title": "[혁신] 엔비디아 젠슨 황의 '회복탄력성'에서 배우는 1:1 맞춤형 진로·취업 코칭 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390025",
-    "author": "관리자",
-    "date": "2026-06-17",
-    "views": 491,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000265/20260617134749234_ZNHGIZ3R.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000265/20260617134818467_A3GKCHPX.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000265/20260617134827438_BQ3P37A4.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:06.487Z"
-  },
-  {
-    "id": "BD0050390022",
-    "title": "[공사안내] 예체능관 승강기 교체공사 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390022",
-    "author": "구매시설팀",
-    "date": "2026-06-09",
-    "views": 386,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:06.790Z"
   }
 ]
