@@ -1,5 +1,39 @@
 [
   {
+    "id": "BD0050390079",
+    "title": "[혁신] 2026학년도 창업아이디어 경진대회 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390079",
+    "author": "취ㆍ창업팀",
+    "date": "2026-10-15",
+    "views": 12,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261015095807684_HZRZCP9V.jpg"
+    ],
+    "crawledAt": "2026-10-15T02:46:45.506Z"
+  },
+  {
+    "id": "BD0050390078",
+    "title": "2026년 구세군 자선냄비 거리모금 자원봉사자 모집 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390078",
+    "author": "선교지원팀",
+    "date": "2026-10-14",
+    "views": 42,
+    "images": [],
+    "crawledAt": "2026-10-15T02:46:47.794Z"
+  },
+  {
+    "id": "BD0050390077",
+    "title": "[2026학년도 2학기 나눔 바자회 행사 안내]",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390077",
+    "author": "선교지원팀",
+    "date": "2026-10-14",
+    "views": 55,
+    "images": [
+      "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390077&attach_idx=BF0050227686"
+    ],
+    "crawledAt": "2026-10-15T02:46:48.724Z"
+  },
+  {
     "id": "BD0050390076",
     "title": "[혁신] 2026학년도 <학습성과 글쓰기 공모전> 참여학생 모집",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390076",
@@ -552,44 +586,5 @@
     "views": 598,
     "images": [],
     "crawledAt": "2026-08-06T07:00:05.018Z"
-  },
-  {
-    "id": "BD0050390030",
-    "title": "[교원초빙] 2026. 9. 1.자 명지전문대학 비전임교원(겸임ㆍ초빙) 공개채용 공고",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390030",
-    "author": "교무처",
-    "date": "2026-06-26",
-    "views": 826,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260629165627913_H3AYWW9W.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260626102211707_WDRHM11D.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260626102221515_O6YBAOKH.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:05.301Z"
-  },
-  {
-    "id": "BD0050390029",
-    "title": "[강사초빙] 2026. 9. 1.자 명지전문대학 강사 공개채용 공고",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390029",
-    "author": "교무처",
-    "date": "2026-06-26",
-    "views": 1785,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260626100931983_LUWNDVZ6.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260626100941599_VKLMWKF8.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:05.639Z"
-  },
-  {
-    "id": "BD0050390027",
-    "title": "[혁신]2026학년도 1학기 학생자원봉사활동체험수기 공모전 입상자 발표 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390027",
-    "author": "선교지원팀",
-    "date": "2026-06-24",
-    "views": 192,
-    "images": [
-      "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390027&attach_idx=BF0050227629"
-    ],
-    "crawledAt": "2026-08-06T07:00:05.916Z"
   }
 ]
