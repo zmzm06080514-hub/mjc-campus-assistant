@@ -1,5 +1,19 @@
 [
   {
+    "id": "BD0050390080",
+    "title": "[전임교원 교수초빙] 2027.03.01.자 전임교원 교수초빙",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390080",
+    "author": "교무처",
+    "date": "2026-10-16",
+    "views": 136,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261016135538755_DM5Q41W5.jpg",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261016135552709_QLHMIEQW.jpg",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261016135607702_YEQQGS14.jpg"
+    ],
+    "crawledAt": "2026-10-17T02:34:56.691Z"
+  },
+  {
     "id": "BD0050390079",
     "title": "[혁신] 2026학년도 창업아이디어 경진대회 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390079",
@@ -576,15 +590,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260701112727218_HTLF6CVY.jpg"
     ],
     "crawledAt": "2026-08-06T07:00:04.680Z"
-  },
-  {
-    "id": "BD0050390031",
-    "title": "[글로벌교육팀] 2026 전문대학 글로벌 현장학습 2차 추가모집",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390031",
-    "author": "글로벌교육팀",
-    "date": "2026-06-26",
-    "views": 598,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:05.018Z"
   }
 ]
