@@ -1,5 +1,29 @@
 [
   {
+    "id": "BD0050390081",
+    "title": "[혁신] 2026학년도 2학기 AI Study+ 실시간 특강 실시 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390081",
+    "author": "교수학습팀",
+    "date": "2026-10-20",
+    "views": 37,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261020152812370_VI396XMQ.jpg"
+    ],
+    "crawledAt": "2026-10-21T02:54:49.876Z"
+  },
+  {
+    "id": "BD0050390082",
+    "title": "[혁신] 2026학년도 2학기 AI Study+ 대면 워크숍 실시 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390082",
+    "author": "교수학습팀",
+    "date": "2026-10-20",
+    "views": 27,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000279/20261020155242601_3C70ZFNT.jpg"
+    ],
+    "crawledAt": "2026-10-21T02:54:51.736Z"
+  },
+  {
     "id": "BD0050390080",
     "title": "[전임교원 교수초빙] 2027.03.01.자 전임교원 교수초빙",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390080",
@@ -566,29 +590,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723173426428_RLFZGYA9.jpg"
     ],
     "crawledAt": "2026-08-06T07:00:03.932Z"
-  },
-  {
-    "id": "BD0050390033",
-    "title": "2026학년도 2학기 생활관생 모집 및 선발 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390033",
-    "author": "생활관",
-    "date": "2026-07-09",
-    "views": 599,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:04.259Z"
-  },
-  {
-    "id": "BD0050390032",
-    "title": "2026학년도 외국인 유학생 안전 가이드북 배포",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390032",
-    "author": "유학생지원팀",
-    "date": "2026-07-01",
-    "views": 237,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260701112648626_L5K78U93.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260701112654990_SP5WDINJ.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000266/20260701112727218_HTLF6CVY.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:04.680Z"
   }
 ]
