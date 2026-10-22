@@ -1,5 +1,42 @@
 [
   {
+    "id": "BD0050390083",
+    "title": "[혁신] 2026학년도 2학기 Learning C.R.E.W(대면 특강) 실시 안내(1회차_나의강점 발견)",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390083",
+    "author": "교수학습팀",
+    "date": "2026-10-21",
+    "views": 33,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000280/20261021145805333_8ALQLVWW.jpg"
+    ],
+    "crawledAt": "2026-10-22T02:58:08.578Z"
+  },
+  {
+    "id": "BD0050390085",
+    "title": "[혁신] 2026학년도 2학기 AI Study+ ★AI 활용 경진대회 참가 안내★",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390085",
+    "author": "교수학습팀",
+    "date": "2026-10-21",
+    "views": 60,
+    "images": [
+      "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390085&attach_idx=BF0050227690",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000280/20261021153650835_PCG83IVH.jpg"
+    ],
+    "crawledAt": "2026-10-22T02:58:10.565Z"
+  },
+  {
+    "id": "BD0050390084",
+    "title": "[혁신] 2026학년도 2학기 Learning C.R.E.W(대면 특강) 실시 안내(2회차_엑셀활용 with AI)",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390084",
+    "author": "교수학습팀",
+    "date": "2026-10-21",
+    "views": 38,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000280/20261021150018624_AK9V6UI3.jpg"
+    ],
+    "crawledAt": "2026-10-22T02:58:11.261Z"
+  },
+  {
     "id": "BD0050390081",
     "title": "[혁신] 2026학년도 2학기 AI Study+ 실시간 특강 실시 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390081",
@@ -551,44 +588,5 @@
     "views": 470,
     "images": [],
     "crawledAt": "2026-08-06T07:00:02.992Z"
-  },
-  {
-    "id": "BD0050389705",
-    "title": "[캠페인] 직장 내 괴롭힘 판단 및 예방 · 대응 가이드",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050389705",
-    "author": "총무회계팀",
-    "date": "2024-07-26",
-    "views": 1277,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000203/20240726093745749_30VODVCW.png"
-    ],
-    "crawledAt": "2026-08-06T07:00:03.312Z"
-  },
-  {
-    "id": "BD0050390036",
-    "title": "[교원초빙] 2026. 9. 1.자 명지전문대학 비전임교원(겸임ㆍ초빙) 공개채용(2차) 공고",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390036",
-    "author": "교무처",
-    "date": "2026-07-23",
-    "views": 630,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723175832554_AJXNUNF5.bmp",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723175842531_18JRRDSW.bmp",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723175850484_750AO8C4.bmp"
-    ],
-    "crawledAt": "2026-08-06T07:00:03.621Z"
-  },
-  {
-    "id": "BD0050390035",
-    "title": "[강사초빙] 2026. 9. 1.자 명지전문대학 강사 공개채용(2차) 공고",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390035",
-    "author": "교무처",
-    "date": "2026-07-23",
-    "views": 2703,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723173416278_VCAK8F5Z.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000269/20260723173426428_RLFZGYA9.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:03.932Z"
   }
 ]
