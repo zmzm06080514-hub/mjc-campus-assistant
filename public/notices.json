@@ -1,5 +1,17 @@
 [
   {
+    "id": "BD0050390086",
+    "title": "[안내] 2026 명지전문대학 개인창작활동 지원 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390086",
+    "author": "취ㆍ창업팀",
+    "date": "2026-10-30",
+    "views": 24,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000280/20261030092832674_A0WM2N3V.png"
+    ],
+    "crawledAt": "2026-10-30T03:57:05.122Z"
+  },
+  {
     "id": "BD0050390083",
     "title": "[혁신] 2026학년도 2학기 Learning C.R.E.W(대면 특강) 실시 안내(1회차_나의강점 발견)",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390083",
@@ -578,15 +590,5 @@
     "views": 410,
     "images": [],
     "crawledAt": "2026-08-06T07:00:02.691Z"
-  },
-  {
-    "id": "BD0050389951",
-    "title": "2026학년도 교원 및 학생창업 신청 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050389951",
-    "author": "취ㆍ창업팀",
-    "date": "2026-03-13",
-    "views": 470,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:02.992Z"
   }
 ]
