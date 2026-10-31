@@ -1,5 +1,27 @@
 [
   {
+    "id": "BD0050389951",
+    "title": "2026학년도 교원 및 학생창업 신청 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050389951",
+    "author": "취ㆍ창업팀",
+    "date": "2026-03-13",
+    "views": 698,
+    "images": [],
+    "crawledAt": "2026-10-31T03:41:49.010Z"
+  },
+  {
+    "id": "BD0050390087",
+    "title": "[혁신] 2026학년도 2학기 외국인 유학생을 위한 글쓰기 교육(Re:Write) 실시 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390087",
+    "author": "교수학습팀",
+    "date": "2026-10-30",
+    "views": 24,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000281/20261030142740436_Q4YDDEEA.jpg"
+    ],
+    "crawledAt": "2026-10-31T03:41:51.279Z"
+  },
+  {
     "id": "BD0050390086",
     "title": "[안내] 2026 명지전문대학 개인창작활동 지원 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390086",
@@ -570,25 +592,5 @@
     "views": 301,
     "images": [],
     "crawledAt": "2026-08-06T07:00:01.953Z"
-  },
-  {
-    "id": "BD0050390023",
-    "title": "2026학년도 하계방학기간 중 구내식당 운영 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390023",
-    "author": "구매시설팀",
-    "date": "2026-06-12",
-    "views": 694,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:02.406Z"
-  },
-  {
-    "id": "BD0050390018",
-    "title": "OFFICE 365 앱 라이선스 정지 대응안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390018",
-    "author": "관리자",
-    "date": "2026-06-08",
-    "views": 410,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:02.691Z"
   }
 ]
