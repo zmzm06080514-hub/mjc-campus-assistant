@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390018",
+    "title": "OFFICE 365 앱 라이선스 정지 대응안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390018",
+    "author": "관리자",
+    "date": "2026-06-08",
+    "views": 797,
+    "images": [],
+    "crawledAt": "2026-11-01T03:49:12.367Z"
+  },
+  {
     "id": "BD0050389951",
     "title": "2026학년도 교원 및 학생창업 신청 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050389951",
@@ -582,15 +592,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000270/20260806141619611_I8ZOBJ4R.jpg"
     ],
     "crawledAt": "2026-08-06T07:00:01.599Z"
-  },
-  {
-    "id": "BD0050390024",
-    "title": "2026학년도 보건실 하계방학 운영시간 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390024",
-    "author": "학생복지팀 보건실",
-    "date": "2026-06-15",
-    "views": 301,
-    "images": [],
-    "crawledAt": "2026-08-06T07:00:01.953Z"
   }
 ]
