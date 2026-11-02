@@ -1,5 +1,17 @@
 [
   {
+    "id": "BD0050390088",
+    "title": "[혁신] 2026학년도 AI 모의면접 경진대회 참가 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390088",
+    "author": "취ㆍ창업팀",
+    "date": "2026-11-02",
+    "views": 10,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000281/20261102114445309_YDEEHSNI.jpg"
+    ],
+    "crawledAt": "2026-11-02T03:53:49.124Z"
+  },
+  {
     "id": "BD0050390018",
     "title": "OFFICE 365 앱 라이선스 정지 대응안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390018",
@@ -580,17 +592,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260807135256671_2JBNU1TF.png"
     ],
     "crawledAt": "2026-08-08T01:08:20.707Z"
-  },
-  {
-    "id": "BD0050390037",
-    "title": "[산학협력팀] MJC 창업보육(Ⅰ)센터 신규 입주기업 모집 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390037",
-    "author": "산학협력팀",
-    "date": "2026-08-06",
-    "views": 24,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000270/20260806141619611_I8ZOBJ4R.jpg"
-    ],
-    "crawledAt": "2026-08-06T07:00:01.599Z"
   }
 ]
