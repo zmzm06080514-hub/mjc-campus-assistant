@@ -1,5 +1,41 @@
 [
   {
+    "id": "BD0050390092",
+    "title": "[혁신] 2026학년도 2학기 제2차 학습컨설팅 실시 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390092",
+    "author": "교수학습팀",
+    "date": "2026-11-06",
+    "views": 15,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000281/20261106095125547_GU6HJS27.jpg"
+    ],
+    "crawledAt": "2026-11-06T04:41:56.745Z"
+  },
+  {
+    "id": "BD0050390093",
+    "title": "[혁신] 2026학년도 2학기 AI Study+ 실시간 특강(2차_바이브코딩) 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390093",
+    "author": "교수학습팀",
+    "date": "2026-11-06",
+    "views": 22,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000281/20261106102745466_ZMLGA4LY.jpg"
+    ],
+    "crawledAt": "2026-11-06T04:41:58.569Z"
+  },
+  {
+    "id": "BD0050390091",
+    "title": "[혁신] 2026학년도 2학기 Oh! Step Up(+) 「Comm-on(컴온)」 집중 특강 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390091",
+    "author": "교육과정혁신팀",
+    "date": "2026-11-05",
+    "views": 204,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000281/20261105150018740_FXQM48DK.jpg"
+    ],
+    "crawledAt": "2026-11-06T04:41:59.303Z"
+  },
+  {
     "id": "BD0050390089",
     "title": "[안내] 시립청소년문화교류센터 2027 시드니 글로벌 인재양성 프로그램 참가자 모집",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390089",
@@ -551,43 +587,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260819145527978_WVXRVTCK.jpg"
     ],
     "crawledAt": "2026-08-20T00:53:33.439Z"
-  },
-  {
-    "id": "BD0050390042",
-    "title": "[강사초빙] 2026. 9. 1.자 명지전문대학 강사 공개채용(3차) 공고",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390042",
-    "author": "교무처",
-    "date": "2026-08-18",
-    "views": 11,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260819090917911_GCFZ40YC.jpg",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260819090926924_GEND8T33.jpg"
-    ],
-    "crawledAt": "2026-08-19T00:53:43.972Z"
-  },
-  {
-    "id": "BD0050390040",
-    "title": "[안내] 비상시 국민행동요령 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390040",
-    "author": "구매시설팀",
-    "date": "2026-08-14",
-    "views": 41,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260814114438253_XEE97LEY.png",
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260814114458630_75ZXF55K.png"
-    ],
-    "crawledAt": "2026-08-15T00:54:01.817Z"
-  },
-  {
-    "id": "BD0050390039",
-    "title": "2026학년도 구직준비도검사 실시 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390039",
-    "author": "취ㆍ창업팀",
-    "date": "2026-08-10",
-    "views": 8,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000271/20260810092816738_S31XVX23.jpg"
-    ],
-    "crawledAt": "2026-08-10T01:15:15.173Z"
   }
 ]
