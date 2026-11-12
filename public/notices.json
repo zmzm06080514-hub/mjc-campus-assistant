@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390094",
+    "title": "2026학년도 2학기 학생 자원봉사활동 체험수기 공모전 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390094",
+    "author": "선교지원팀",
+    "date": "2026-11-12",
+    "views": 20,
+    "images": [],
+    "crawledAt": "2026-11-12T05:22:24.381Z"
+  },
+  {
     "id": "BD0050390092",
     "title": "[혁신] 2026학년도 2학기 제2차 학습컨설팅 실시 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390092",
@@ -575,17 +585,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260819201827534_1XXPMPGL.jpg"
     ],
     "crawledAt": "2026-08-20T00:53:30.877Z"
-  },
-  {
-    "id": "BD0050390044",
-    "title": "2026-2학기 전산자격증 취득 지원 안내(컴퓨터활용능력 2급)",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390044",
-    "author": "취ㆍ창업팀",
-    "date": "2026-08-19",
-    "views": 76,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260819145527978_WVXRVTCK.jpg"
-    ],
-    "crawledAt": "2026-08-20T00:53:33.439Z"
   }
 ]
