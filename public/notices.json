@@ -1,5 +1,19 @@
 [
   {
+    "id": "BD0050390095",
+    "title": "[혁신] 2026학년도 취업캠프 및 캡스톤디자인 경진대회 운영 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390095",
+    "author": "취ㆍ창업팀",
+    "date": "2026-11-12",
+    "views": 41,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000282/20261112195625994_531PCG5K.jpg",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000282/20261112195603500_09CHU9J5.jpg",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000282/20261112195640879_S1G8FPUL.jpg"
+    ],
+    "crawledAt": "2026-11-13T04:37:45.461Z"
+  },
+  {
     "id": "BD0050390094",
     "title": "2026학년도 2학기 학생 자원봉사활동 체험수기 공모전 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390094",
@@ -573,17 +587,5 @@
     "views": 28,
     "images": [],
     "crawledAt": "2026-08-21T00:56:50.072Z"
-  },
-  {
-    "id": "BD0050390045",
-    "title": "[혁신] 2026학년도 2학기 글로벌 어학.회화 프로그램 모집 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390045",
-    "author": "글로벌교육팀",
-    "date": "2026-08-19",
-    "views": 37,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260819201827534_1XXPMPGL.jpg"
-    ],
-    "crawledAt": "2026-08-20T00:53:30.877Z"
   }
 ]
