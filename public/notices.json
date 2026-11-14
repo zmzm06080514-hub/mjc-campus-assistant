@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390096",
+    "title": "포탈/학사정보화시스템(MBrain) 1차 오픈에 따른 icampus서비스 중단안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390096",
+    "author": "관리자",
+    "date": "2026-11-13",
+    "views": 38,
+    "images": [],
+    "crawledAt": "2026-11-14T04:32:14.258Z"
+  },
+  {
     "id": "BD0050390095",
     "title": "[혁신] 2026학년도 취업캠프 및 캡스톤디자인 경진대회 운영 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390095",
@@ -577,15 +587,5 @@
     "views": 67,
     "images": [],
     "crawledAt": "2026-08-24T00:55:21.530Z"
-  },
-  {
-    "id": "BD0050390046",
-    "title": "주차장 물청소 작업안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390046",
-    "author": "구매시설팀",
-    "date": "2026-08-20",
-    "views": 28,
-    "images": [],
-    "crawledAt": "2026-08-21T00:56:50.072Z"
   }
 ]
