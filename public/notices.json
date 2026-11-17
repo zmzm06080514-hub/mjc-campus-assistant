@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390097",
+    "title": "포탈/학사정보화시스템(MBrain) 시스템 1차 오픈 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390097",
+    "author": "관리자",
+    "date": "2026-11-16",
+    "views": 111,
+    "images": [],
+    "crawledAt": "2026-11-17T06:03:56.227Z"
+  },
+  {
     "id": "BD0050390096",
     "title": "포탈/학사정보화시스템(MBrain) 1차 오픈에 따른 icampus서비스 중단안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390096",
@@ -577,15 +587,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260826114311770_IH9NL8RW.jpg"
     ],
     "crawledAt": "2026-08-27T06:41:43.797Z"
-  },
-  {
-    "id": "BD0050390043",
-    "title": "2026-2학기 학생지원처 보건실 운영안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390043",
-    "author": "학생복지팀",
-    "date": "2026-08-19",
-    "views": 67,
-    "images": [],
-    "crawledAt": "2026-08-24T00:55:21.530Z"
   }
 ]
