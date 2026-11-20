@@ -1,5 +1,17 @@
 [
   {
+    "id": "BD0050390098",
+    "title": "[혁신]2026학년도 동계방학 글로벌 어학 · 회화 프로그램 모집 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390098",
+    "author": "글로벌교육팀",
+    "date": "2026-11-19",
+    "views": 52,
+    "images": [
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000283/20261119172858388_ELZILM2E.png"
+    ],
+    "crawledAt": "2026-11-20T05:18:56.844Z"
+  },
+  {
     "id": "BD0050390043",
     "title": "2026-2학기 학생지원처 보건실 운영안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390043",
@@ -573,17 +585,5 @@
       "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390049&attach_idx=BF0050227662"
     ],
     "crawledAt": "2026-08-31T02:57:09.488Z"
-  },
-  {
-    "id": "BD0050390048",
-    "title": "[혁신]2026학년도 MJC-학생모니터링단 7기 모집 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390048",
-    "author": "대학혁신본부",
-    "date": "2026-08-27",
-    "views": 95,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000272/20260827155651935_Y8L0OZUJ.jpg"
-    ],
-    "crawledAt": "2026-08-28T08:31:48.745Z"
   }
 ]
