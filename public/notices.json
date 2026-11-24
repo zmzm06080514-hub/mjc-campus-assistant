@@ -1,5 +1,18 @@
 [
   {
+    "id": "BD0050390100",
+    "title": "[편입학] 2027학년도 명지전문대학 전기 편입학 모집 안내",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390100",
+    "author": "교무입학팀",
+    "date": "2026-11-24",
+    "views": 53,
+    "images": [
+      "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390100&attach_idx=BF0050227712",
+      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000283/20261124100643752_NFRB4SE8.png"
+    ],
+    "crawledAt": "2026-11-24T07:56:53.872Z"
+  },
+  {
     "id": "BD0050390098",
     "title": "[혁신]2026학년도 동계방학 글로벌 어학 · 회화 프로그램 모집 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390098",
@@ -573,17 +586,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000273/20260901134048981_E1WNVIU6.png"
     ],
     "crawledAt": "2026-09-02T02:25:17.197Z"
-  },
-  {
-    "id": "BD0050390049",
-    "title": "[혁신] 2026학년도 2학기 글로벌 버디버디 참여 학생 모집 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390049",
-    "author": "유학생지원팀",
-    "date": "2026-08-31",
-    "views": 13,
-    "images": [
-      "https://www.mjc.ac.kr/bbs/file/getImage.do?bbs_mst_idx=BM0000000026&data_idx=BD0050390049&attach_idx=BF0050227662"
-    ],
-    "crawledAt": "2026-08-31T02:57:09.488Z"
   }
 ]
