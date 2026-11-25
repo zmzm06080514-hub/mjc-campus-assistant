@@ -1,5 +1,15 @@
 [
   {
+    "id": "BD0050390101",
+    "title": "한국어교육센터 한국어 강사 모집 공고",
+    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390101",
+    "author": "한국어교육센터",
+    "date": "2026-11-25",
+    "views": 38,
+    "images": [],
+    "crawledAt": "2026-11-25T06:32:54.040Z"
+  },
+  {
     "id": "BD0050390100",
     "title": "[편입학] 2027학년도 명지전문대학 전기 편입학 모집 안내",
     "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390100",
@@ -574,17 +584,5 @@
       "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000273/20260901134526392_UGW93PU2.png"
     ],
     "crawledAt": "2026-09-02T02:25:16.019Z"
-  },
-  {
-    "id": "BD0050390050",
-    "title": "[혁신] 2026학년도 2학기 \"패스파인딩\" 멘토링 프로그램 운영 안내",
-    "url": "https://www.mjc.ac.kr/bbs/data/view.do?bbs_mst_idx=BM0000000026&menu_idx=66&data_idx=BD0050390050",
-    "author": "융합교육지원센터",
-    "date": "2026-09-01",
-    "views": 70,
-    "images": [
-      "https://mjcms.mjc.ac.kr/crosseditor/binary/images/000273/20260901134048981_E1WNVIU6.png"
-    ],
-    "crawledAt": "2026-09-02T02:25:17.197Z"
   }
 ]
